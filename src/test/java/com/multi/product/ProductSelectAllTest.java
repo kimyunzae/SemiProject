@@ -1,27 +1,36 @@
-package com.multi.cust;
+package com.multi.product;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.multi.biz.CustBiz;
+import com.multi.biz.ProductBiz;
 import com.multi.vo.CustVO;
+import com.multi.vo.ProductVO;
 
 @SpringBootTest
-class CustUpdateTest {
+class ProductSelectAllTest {
 	
 	@Autowired
-	CustBiz biz;
-
+	ProductBiz biz;
+	
 	@Test
 	void contextLoads() {
-		CustVO obj = new CustVO("id06", "È«±æµ¿","¼­¿ï","pwd06");
+		List<ProductVO> list = null;
 		try {
-			biz.modify(obj);
-			System.out.println(obj);
+			list = biz.get();
+			for (ProductVO obj : list) {
+				System.out.print("SelectAll OK");
+				System.out.println(obj);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 }
+
+

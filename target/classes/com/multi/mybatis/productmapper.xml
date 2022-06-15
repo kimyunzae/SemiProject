@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INSERT INTO PRODUCT VALUES (#{id},#{name},#{price},curdate(),#{cid},#{imgname},#{catename})
 	</insert>
 	<update id="update" parameterType="productVO">
-		UPDATE PRODUCT SET NAME=#{name},PRICE=#{price},CID=#{cid},IMGNAME=#{imgname} 
+		UPDATE PRODUCT SET NAME=#{name},PRICE=#{price},CID=#{cid},IMGNAME=#{imgname},CATENAME=#{catename} 
 		WHERE ID=#{id}
 	</update>
 	<delete id="delete" parameterType="int">
