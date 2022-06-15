@@ -14,17 +14,20 @@ public class MainController {
 
 	@RequestMapping("/about")
 	public String about(Model m) {
-		return "about";
+		m.addAttribute("center","about");
+		return "index";
 	}
 
 	@RequestMapping("/products")
 	public String products(Model m) {
-		return "products";
+		m.addAttribute("center","products");
+		return "index";
 	}
 
 	@RequestMapping("/store")
 	public String store(Model m) {
-		return "store";
+		m.addAttribute("center","store");
+		return "index";
 	}
 	
 	@RequestMapping("/register")
