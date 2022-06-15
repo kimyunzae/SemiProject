@@ -19,6 +19,14 @@ public class CartVO {
 	private int pid;
 	private int cnt;
 	private Date regdate;
+	public CartVO(int id, String uid, int pid, int cnt) {
+		super();
+		this.id = id;
+		this.uid = uid;
+		this.pid = pid;
+		this.cnt = cnt;
+	}
+	
 	
 	//private String pname;
 	//private int pprice;
