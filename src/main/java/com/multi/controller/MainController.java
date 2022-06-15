@@ -26,5 +26,15 @@ public class MainController {
 	public String store(Model m) {
 		return "store";
 	}
+	
+	@RequestMapping("/register")
+	public String register(Model m) {
+		return "register";
+	}
+	
+	@RequestMapping("/login")
+	public String login(Model m) {
+		return "login";
+	}
 
 }
