@@ -1,79 +1,158 @@
 <meta charset="utf-8">
-<section class="page-section">
+<style>
+.side-navbar {
+	width: 180px;
+	height: 40%;
+	position: fixed;
+	margin-left: -300px;
+	background-color: #100901;
+	transition: 0.5s;
+}
+
+.nav-link:active, .nav-link:focus, .nav-link:hover {
+	background-color: #ffffff26;
+}
+
+.my-container {
+	transition: 0.4s;
+}
+
+.active-nav {
+	margin-left: 0;
+}
+/* for main section */
+.active-cont {
+	margin-left: 180px;
+}
+
+#menu-btn {
+	background-color: #100901;
+	color: #fff;
+	margin-left: -62px;
+}
+
+@media
+</style>
+
+<script>
+	var menu_btn = document.querySelector("#menu-btn");
+	var sidebar = document.querySelector("#sidebar");
+	var container = document.querySelector(".my-container");
+	menu_btn.addEventListener("click", () => {
+	  sidebar.classList.toggle("active-nav");
+	  container.classList.toggle("active-cont");
+	});
+</script>
+
+<section class="page-section cta">
 	<div class="container">
-		<div class="product-item">
-			<div class="product-item-title d-flex">
-				<div class="bg-faded p-5 d-flex ms-auto rounded">
-					<h2 class="section-heading mb-0">
-						<span class="section-heading-upper">Blended to Perfection</span> <span
-							class="section-heading-lower">Coffees & Teas</span>
-					</h2>
+		<div class="row">
+			<div class="col-md-2">
+				<div
+					class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column"
+					id="sidebar">
+					<ul class="nav flex-column text-white w-100">
+						<a href="#" class="nav-link h3 text-white my-2"> Sort By: </a>
+						<li href="#" class="nav-link"><span class="mx-2">Espresso</span>
+						</li>
+						<li href="#" class="nav-link"><span class="mx-2">Decaffein</span>
+						</li>
+						<li href="#" class="nav-link"><span class="mx-2">Ethical</span>
+						</li>
+						<li href="#" class="nav-link"><span class="mx-2">Organic</span>
+						</li>
+						<li href="#" class="nav-link"><span class="mx-2">Single Origin</span>
+						</li>
+					</ul>
 				</div>
 			</div>
-			<img
-				class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
-				src="assets/img/products-01.jpg" alt="..." />
-			<div class="product-item-description d-flex me-auto">
-				<div class="bg-faded p-5 rounded">
-					<p class="mb-0">We take pride in our work, and it shows. Every
-						time you order a beverage from us, we guarantee that it will be an
-						experience worth having. Whether it's our world famous Venezuelan
-						Cappuccino, a refreshing iced herbal tea, or something as simple
-						as a cup of speciality sourced black coffee, you will be coming
-						back for more.</p>
+			<div class="cta-inner bg-faded text-center rounded col-md-9">
+
+				<div class="container">
+					<div class="row">
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/OrganicEspresso.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/PureArabica.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+
+						<div class="card col-md-4" width="200px">
+							<img class="card-img-top"
+								src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
+							<div class="card-body">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text">Some example text.</p>
+								<a href="#" class="btn btn-primary">See Profile</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<section class="page-section">
-	<div class="container">
-		<div class="product-item">
-			<div class="product-item-title d-flex">
-				<div class="bg-faded p-5 d-flex me-auto rounded">
-					<h2 class="section-heading mb-0">
-						<span class="section-heading-upper">Delicious Treats, Good
-							Eats</span> <span class="section-heading-lower">Bakery & Kitchen</span>
-					</h2>
-				</div>
-			</div>
-			<img
-				class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
-				src="assets/img/products-02.jpg" alt="..." />
-			<div class="product-item-description d-flex ms-auto">
-				<div class="bg-faded p-5 rounded">
-					<p class="mb-0">Our seasonal menu features delicious snacks,
-						baked goods, and even full meals perfect for breakfast or
-						lunchtime. We source our ingredients from local, oragnic farms
-						whenever possible, alongside premium vendors for specialty goods.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="page-section">
-	<div class="container">
-		<div class="product-item">
-			<div class="product-item-title d-flex">
-				<div class="bg-faded p-5 d-flex ms-auto rounded">
-					<h2 class="section-heading mb-0">
-						<span class="section-heading-upper">From Around the World</span> <span
-							class="section-heading-lower">Bulk Speciality Blends</span>
-					</h2>
-				</div>
-			</div>
-			<img
-				class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
-				src="assets/img/products-03.jpg" alt="..." />
-			<div class="product-item-description d-flex me-auto">
-				<div class="bg-faded p-5 rounded">
-					<p class="mb-0">Travelling the world for the very best quality
-						coffee is something take pride in. When you visit us, you'll
-						always find new blends from around the world, mainly from regions
-						in Central and South America. We sell our blends in smaller to
-						large bulk quantities. Please visit us in person for more details.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+
