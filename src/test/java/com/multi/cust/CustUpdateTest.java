@@ -15,7 +15,7 @@ class CustUpdateTest {
 
 	@Test
 	void contextLoads() {
-		CustVO obj = new CustVO("id06", "È«±æµ¿","¼­¿ï","pwd06");
+		CustVO obj = new CustVO("id06","í™ê¸¸ë™","ì„œìš¸","pwd06");
 		try {
 			biz.modify(obj);
 			System.out.println(obj);
