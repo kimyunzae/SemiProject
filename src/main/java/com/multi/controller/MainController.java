@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.multi.biz.CateBiz;
 import com.multi.biz.CustBiz;
-import com.multi.biz.ProductBiz;
 import com.multi.vo.CustVO;
 
 @Controller
@@ -17,12 +15,6 @@ public class MainController {
 	
 	@Autowired
 	CustBiz custbiz;
-	
-	@Autowired
-	CateBiz catebiz;
-	
-	@Autowired
-	ProductBiz prodbiz;
 
 	@RequestMapping("/index")
 	public String index(Model m) {

@@ -12,11 +12,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CustVO {
-	private String id;
+	private String uid;
 	private String name;
 	private String addr;
 	private String pwd;
+
 	
+
 }
 
 
