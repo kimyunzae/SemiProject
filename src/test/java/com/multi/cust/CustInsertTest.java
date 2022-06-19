@@ -15,7 +15,7 @@ class CustInsertTest {
 
 	@Test
 	void contextLoads() {
-		CustVO obj = new CustVO("id01", "six1", "city1","pwd01");
+		CustVO obj = new CustVO("id05", "허겸", "강남","pwd05", "abc@naver.com", "01011112222");
 		try {
 			biz.register(obj);
 			System.out.println("Registered OK");

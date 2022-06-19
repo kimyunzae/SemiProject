@@ -25,27 +25,31 @@
             </h1>
         </header>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+        <nav class="navbar navbar-expand-lg py-lg-4" id="mainNav">
             <div class="container">
-                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">T7Coffee</a>
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index">T7Coffee</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index">Home</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about">About</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products">Products</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store">Store</a></li>
-                        <li th:if="${session.logincust == null}" class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="register">Sign up</a></li>
-                        <li th:if="${session.logincust == null}"class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login">Sign in</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about"><i class="fas fa-chart-pie"></i> About</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products"><i class="fab fa-shopify"></i> Products</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store"><i class="fas fa-store"></i> Store</a></li>
+                        
+                        <li th:if="${session.logincust == null}" class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="register"><i class="fas fa-sign-in-alt"></i> Sign up</a></li>
+                        <li th:if="${session.logincust == null}"class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login"><i class="fas fa-sign-out-alt"></i> Sign in</a></li>
                    		
                    		<li th:unless="${session.logincust == null}"class="nav-item px-lg-4">
                    		<a class="nav-link" href="cartlist"><span  class="glyphicon glyphicon-cart">
-                   		</span>Cart</a></li>
+                   		</span><i class="fas fa-shopping-bag"></i> Cart</a></li>
+                   		<li th:unless="${session.logincust == null}"class="nav-item px-lg-4">
+                   		<a class="nav-link" href="mypage">
+                   		<i class="fas fa-user-alt"></i> My Page</a></li>
                    		<li th:unless="${session.logincust == null}"class="nav-item px-lg-4">
                    		<a class="nav-link" href="logout">
-                   		<span th:text="${session.logincust.name}"></span>
-                   		<span  class="glyphicon glyphicon-log-out">
-                   		</span>Sign out</a></li>
+                   		<i class="fas fa-sign-in-alt"></i> Sign Out</a></li>
+                   		
+                   		
                     </ul>
                 </div>
             </div>

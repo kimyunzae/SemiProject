@@ -16,7 +16,8 @@ public class CustVO {
 	private String name;
 	private String addr;
 	private String pwd;
-
+	private String email;
+	private String phone;
 	
 
 }
