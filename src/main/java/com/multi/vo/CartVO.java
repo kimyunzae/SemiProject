@@ -13,24 +13,22 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
 public class CartVO {
-	private int id;
+	private Integer crid;
 	private String uid;
 	private int pid;
 	private int cnt;
-	private Date regdate;
-	public CartVO(int id, String uid, int pid, int cnt) {
-		super();
-		this.id = id;
+	
+	private String catename;
+	private String pname;
+	
+	public CartVO(String uid, int pid, int cnt) {
 		this.uid = uid;
 		this.pid = pid;
 		this.cnt = cnt;
 	}
 	
-	
-	//private String pname;
-	//private int pprice;
-	//private String catename;
 	
 }
 
