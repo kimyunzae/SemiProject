@@ -20,10 +20,32 @@ public class MyPageController {
 		return "index";
 	}
 	
+	
 	@RequestMapping("/address")
 	public String address(Model m) {
 		m.addAttribute("center", "mypage/mypage");
 		m.addAttribute("center2", "mypage/address");
+		return "index";
+	}
+	
+	@RequestMapping("/orders")
+	public String orders(Model m) {
+		m.addAttribute("center", "mypage/mypage");
+		m.addAttribute("center2", "mypage/orders");
+		return "index";
+	}
+	
+	@RequestMapping("/activities")
+	public String activities(Model m) {
+		m.addAttribute("center", "mypage/mypage");
+		m.addAttribute("center2", "mypage/activities");
+		return "index";
+	}
+	
+	@RequestMapping("/setting")
+	public String setting(Model m) {
+		m.addAttribute("center", "mypage/mypage");
+		m.addAttribute("center2", "mypage/setting");
 		return "index";
 	}
 
