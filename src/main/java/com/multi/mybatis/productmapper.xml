@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.ProductMapper">
-	
+
 	<select id="select" parameterType="int" resultType="productVO">
-		SELECT p.id, p.name, p.regdate, p.imgname,
-		p.cid, p.price, c.name as catename
+		SELECT p.pid, p.pname, p.pprice, p.regdate, p.cid,
+		p.pimgname, p.pcontents, c.cname as cname
 		FROM product p
-		INNER JOIN cate c ON p.cid = c.id
-		WHERE p.id = #{id}
+		INNER JOIN cate c ON p.cid = c.cid
+		WHERE p.pid = #{pid}
 	</select>
 	<select id="selectall" resultType="productVO">
-		SELECT p.id, p.name, p.regdate, p.imgname,
-		p.cid, p.price, c.name as catename
+		SELECT p.pid, p.pname, p.pprice, p.regdate, p.cid,
+		p.pimgname, p.pcontents, c.cname as cname
 		FROM product p
-		INNER JOIN cate c ON p.cid = c.id
+		INNER JOIN cate c ON p.cid = c.cid
 	</select>
-	<insert id="insert" parameterType="productVO">
-		INSERT INTO PRODUCT VALUES (#{id},#{name},#{price},curdate(),#{cid},#{imgname},#{catename})
+	<insert id="insert" parameterType="productVO" useGeneratedKeys="true" keyProperty="pid">
+		INSERT INTO PRODUCT VALUES (NULL,#{pname},#{pprice},curdate(),#{cid},#{pimgname},#{pcontents})
 	</insert>
 	<update id="update" parameterType="productVO">
-		UPDATE PRODUCT SET NAME=#{name},PRICE=#{price},CID=#{cid},IMGNAME=#{imgname},CATENAME=#{catename} 
-		WHERE ID=#{id}
+		UPDATE PRODUCT SET PNAME=#{pname},PPRICE=#{pprice},CID=#{cid}
+		<!-- 이 구문들을 써먹으려면 web단에서 해당 필드 미업데이트시 널값을 제공하도록 하면 됨 -->
+		<choose>
+			<when test="pimgname == null or pimgname.equals('')"></when>
+			<otherwise>
+				,PIMGNAME=#{pimgname}
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="pcontents == null or pcontents.equals('')"></when>
+			<otherwise>
+				,PCONTENTS=#{pcontents}
+			</otherwise>
+		</choose>
+		WHERE PID=#{pid}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM PRODUCT WHERE ID=#{id}
+		DELETE FROM PRODUCT WHERE PID=#{pid}
 	</delete>
-	
 </mapper>
-
-
-
-
-
-

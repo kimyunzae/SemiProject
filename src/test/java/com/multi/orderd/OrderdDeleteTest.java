@@ -1,21 +1,21 @@
-package com.multi.cust;
+package com.multi.orderd;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CustBiz;
+import com.multi.biz.OrderdBiz;
 
 @SpringBootTest
-class CustDeleteTest {
+class OrderdDeleteTest {
 	
 	@Autowired
-	CustBiz biz;
+	OrderdBiz biz;
 
 	@Test
 	void contextLoads() {
 		try {
-			biz.remove("id05");
+			biz.remove(3);
 			System.out.println("Delete OK");
 		} catch (Exception e) {
 			System.out.println("Delete FAIL");

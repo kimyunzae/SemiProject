@@ -24,15 +24,24 @@ public class OrderdVO {
 	private String status; // 배송상태, 사실 syntax 미정
 	private String transaction; // 결제정보, 사실 syntax 미정(2)
 	
-	// DB 추가용 id(auto_increment) 없는 생성자
-	public OrderdVO(String uid, Date ordate, int totalprice, String addr, String receivename, String status,
+	// DB 추가용 id(auto_increment),ordate 없는 생성자
+	public OrderdVO(String uid, int totalprice, String addr, String receivename, String status,
 			String transaction) {
 		this.uid = uid;
-		this.ordate = ordate;
 		this.totalprice = totalprice;
 		this.addr = addr;
 		this.receivename = receivename;
 		this.status = status;
 		this.transaction = transaction;
+	}
+
+	// 수정용
+	public OrderdVO(Integer orid, String uid, int totalprice, String addr, String receivename, String status) {
+		this.orid = orid;
+		this.uid = uid;
+		this.totalprice = totalprice;
+		this.addr = addr;
+		this.receivename = receivename;
+		this.status = status;
 	}
 }

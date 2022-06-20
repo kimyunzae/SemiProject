@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.OrderdMapper">
+
+	<select id="select" parameterType="int" resultType="orderdVO">
+		SELECT * FROM ORDERD WHERE ORID=#{orid}
+	</select>
+	<select id="selectall" resultType="orderdVO">
+		SELECT * FROM ORDERD
+	</select>
+	<insert id="insert" parameterType="orderdVO" useGeneratedKeys="true" keyProperty="orid">
+		INSERT INTO ORDERD VALUES (NULL,#{uid},curdate(),#{totalprice},#{addr},#{receivename},#{status},#{transaction})
+	</insert>
+	<update id="update" parameterType="orderdVO">
+		UPDATE ORDERD SET UID=#{uid}
+		<!-- 이 구문들을 써먹으려면 web단에서 해당 필드 미업데이트시 널값을 제공하도록 하면 됨 -->
+		<choose>
+			<when test="totalprice == null or totalprice.equals('')"></when>
+			<otherwise>
+				,TOTALPRICE=#{totalprice}
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="addr == null or addr.equals('')"></when>
+			<otherwise>
+				,ADDR=#{addr}
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="receivename == null or receivename.equals('')"></when>
+			<otherwise>
+				,RECEIVENAME=#{receivename}
+			</otherwise>
+		</choose>
+			<choose>
+			<when test="status == null or status.equals('')"></when>
+			<otherwise>
+				,STATUS=#{status}
+			</otherwise>
+		</choose> WHERE ORID=#{orid}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM ORDERD WHERE ORID=#{orid}
+	</delete>
+	<update id="updatetotalprice" parameterType="int">
+		UPDATE ORDERD SET totalprice=(
+			SELECT sum(price*cnt) FROM ORDERDETAIL WHERE orid = #{orid}
+		) WHERE orid = #{orid}
+	</update>
+
+</mapper>
