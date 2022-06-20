@@ -5,30 +5,30 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.CateMapper">
 	
 	<select id="select" parameterType="int" resultType="cateVO">
-		SELECT * FROM CATE WHERE ID=#{id}
+		SELECT * FROM cate WHERE CID=#{cid}
 	</select>
 	<select id="selectall" resultType="cateVO">
-		SELECT * FROM CATE
+		SELECT * FROM cate
 	</select>
 	
 	<insert id="insert" parameterType="cateVO">
 		<if	test="pid != 0"> 
-			INSERT INTO CATE VALUES (#{id},#{name},#{pid})
+			INSERT INTO cate VALUES (#{cid},#{name},#{parentid})
 		</if>
 		<if	test="pid == 0"> 
-			INSERT INTO CATE VALUES (#{id},#{name},NULL)
+			INSERT INTO cate VALUES (#{cid},#{name},NULL)
 		</if>
 	</insert>
 	<update id="update" parameterType="cateVO">
 		<if	test="pid != 0"> 
-		 	UPDATE CATE SET NAME=#{name},PID=#{pid} WHERE ID=#{id}
+		 	UPDATE cate SET NAME=#{name},PARENTID=#{parentid} WHERE CID=#{cid}
 		</if>
 		<if	test="pid == 0"> 
-		 	UPDATE CATE SET NAME=#{name} WHERE ID=#{id}
+		 	UPDATE cate SET NAME=#{name} WHERE CID=#{cid}
 		</if>
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM CATE WHERE ID=#{id}
+		DELETE FROM cate WHERE CID=#{cid}
 	</delete>
 	
 </mapper>

@@ -12,6 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CustVO {
+
 	private String uid; // 이용자 아이디
 	private String name; // 이름
 	private String addr; // 주소

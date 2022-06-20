@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<select id="select" parameterType="int" resultType="cartVO">
 		SELECT c.id, cu.id AS uid, ca.name AS catename, 
-		p.id AS pid, p.name AS pname, p.price as pprice, c.regdate, c.cnt FROM cart c
+		p.id AS pid, p.name AS pname, p.price as pprice, c.cnt FROM cart c
 		INNER JOIN cust cu ON c.uid = cu.id
 		INNER JOIN product p ON c.pid = p.id
 		INNER JOIN cate ca ON ca.id = p.cid
@@ -14,19 +14,19 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectall" resultType="cartVO">
 		SELECT c.id, cu.id AS uid, ca.name AS catename, 
-		p.id AS pid, p.name AS pname, p.price as pprice, c.regdate, c.cnt FROM cart c
+		p.id AS pid, p.name AS pname, p.price as pprice, c.cnt FROM cart c
 		INNER JOIN cust cu ON c.uid = cu.id
 		INNER JOIN product p ON c.pid = p.id
 		INNER JOIN cate ca ON ca.id = p.cid
 	</select>
 	<insert id="insert" parameterType="cartVO">
-		INSERT INTO CART VALUES (NULL, #{uid},#{pid},CURDATE(),#{cnt});
+		INSERT INTO CART VALUES (#{uid},#{pid},#{cnt});
 	</insert>
 	<update id="update" parameterType="cartVO">
-		UPDATE CART SET CNT=#{cnt} WHERE ID=#{id}
+		UPDATE CART SET CNT=#{cnt} WHERE CRID=#{crid}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM CART WHERE ID=#{id}
+		DELETE FROM CART WHERE CRID=#{crid}
 	</delete>
 	
 </mapper>

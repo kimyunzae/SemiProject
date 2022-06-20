@@ -1,28 +1,36 @@
-package com.multi.cust;
+package com.multi.addrlist;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.multi.biz.CartBiz;
 import com.multi.biz.CustBiz;
+import com.multi.vo.CartVO;
 import com.multi.vo.CustVO;
 
 @SpringBootTest
-class CustInsertTest {
+class CartSelectAllTest {
 	
 	@Autowired
-	CustBiz biz;
-
+	CartBiz biz;
+	
 	@Test
 	void contextLoads() {
-		CustVO obj = new CustVO("id05", "허겸", "강남","pwd05", "abc@naver.com", "01011112222");
+		List<CartVO> list = null;
 		try {
-			biz.register(obj);
-			System.out.println("Registered OK");
-			System.out.println(obj);
+			list = biz.get();
+			for (CartVO obj : list) {
+				System.out.print("SelectAll OK");
+				System.out.println(obj);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 }
+
+

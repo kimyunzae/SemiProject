@@ -21,7 +21,6 @@ public class ProductVO {
 	private int cid; // 카테고리 아이디
 	private String pimgname; // 상품 이미지
 	private String pcontents; // 상품글의 내용
-		
 	private String cname; // 카테고리명
 	/* private Integer parentcid; // 상위 카테고리 아이디
 	 * private String parentcname; // 상위 카테고리명

@@ -12,7 +12,7 @@ import com.multi.vo.CustVO;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
 	CustBiz custbiz;
 
@@ -23,28 +23,34 @@ public class MainController {
 
 	@RequestMapping("/about")
 	public String about(Model m) {
-		m.addAttribute("center","about");
+		m.addAttribute("center", "about");
 		return "index";
 	}
 
 	@RequestMapping("/products")
 	public String products(Model m) {
-		m.addAttribute("center","products");
+		m.addAttribute("center", "products");
 		return "index";
 	}
 
 	@RequestMapping("/store")
 	public String store(Model m) {
-		m.addAttribute("center","store");
+		m.addAttribute("center", "store");
 		return "index";
 	}
 	
+	@RequestMapping("/cart")
+	public String cart(Model m) {
+		m.addAttribute("center", "cart");
+		return "index";
+	}
+
 	@RequestMapping("/register")
 	public String register(Model m) {
-		m.addAttribute("center","register");
+		m.addAttribute("center", "register");
 		return "index";
 	}
-	
+
 	@RequestMapping("/registerimpl")
 	public String registerimpl(Model m, CustVO cust, HttpSession session) {
 		try {
@@ -55,25 +61,32 @@ public class MainController {
 		}
 		return "index";
 	}
-	
+
 	@RequestMapping("/login")
 	public String login(Model m) {
-		m.addAttribute("center","login");
+		m.addAttribute("center", "login");
 		return "index";
 	}
-	
-	
+
+	@RequestMapping("/logout")
+	public String logout(Model m, HttpSession session) {
+		if (session != null) {
+			session.invalidate();
+		}
+		return "index";
+	}
+
 	@RequestMapping("/loginimpl")
 	public String loginimpl(Model m, HttpSession session, String id, String pwd) {
 		CustVO cust = null;
 		try {
 			cust = custbiz.get(id);
-			if(cust == null) {
+			if (cust == null) {
 				throw new Exception();
 			}
-			if(cust.getPwd().equals(pwd)) {
+			if (cust.getPwd().equals(pwd)) {
 				session.setAttribute("logincust", cust);
-			}else {
+			} else {
 				throw new Exception();
 			}
 		} catch (Exception e) {
@@ -81,15 +94,5 @@ public class MainController {
 		}
 		return "index";
 	}
-	
-	@RequestMapping("/logout")
-	public String logout(Model m, HttpSession session) {
-		if(session != null) {
-			session.invalidate();
-		}
-		return "index";
-	}
 
-	
-	
 }
