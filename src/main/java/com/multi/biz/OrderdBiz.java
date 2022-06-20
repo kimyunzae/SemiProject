@@ -38,4 +38,8 @@ public class OrderdBiz implements Biz<Integer,OrderdVO>{
 		return dao.selectall();
 	}
 	
+	public void sumTotalprice(int k) throws Exception {
+		dao.updatetotalprice(k);
+	}
+	
 }

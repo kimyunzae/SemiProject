@@ -1,24 +1,25 @@
-package com.multi.cust;
+package com.multi.orderd;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CustBiz;
+import com.multi.biz.OrderdBiz;
+import com.multi.vo.OrderdVO;
 
 @SpringBootTest
-class CustDeleteTest {
+class OrderdUpdatetotalpriceTest {
 	
 	@Autowired
-	CustBiz biz;
+	OrderdBiz biz;
 
 	@Test
 	void contextLoads() {
 		try {
-			biz.remove("id05");
-			System.out.println("Delete OK");
+			biz.sumTotalprice(4);
+			System.out.println("Total price Update OK");
+			System.out.println(biz.get(4));
 		} catch (Exception e) {
-			System.out.println("Delete FAIL");
 			e.printStackTrace();
 		}
 	}

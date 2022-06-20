@@ -1,23 +1,21 @@
-package com.multi.product;
+package com.multi.orderd;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CustBiz;
-import com.multi.biz.ProductBiz;
-import com.multi.vo.CustVO;
-import com.multi.vo.ProductVO;
+import com.multi.biz.OrderdBiz;
+import com.multi.vo.OrderdVO;
 
 @SpringBootTest
-class ProductInsertTest {
+class OrderdInsertTest {
 	
 	@Autowired
-	ProductBiz biz;
+	OrderdBiz biz;
 
 	@Test
 	void contextLoads() {
-		ProductVO obj = new ProductVO("blend1",10000,21,"blend1.jpg","");
+		OrderdVO obj = new OrderdVO("id04",0,"인천","김상민","departing","ZF124392058120");
 		try {
 			biz.register(obj);
 			System.out.println("Registered OK");
