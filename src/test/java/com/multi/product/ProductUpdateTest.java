@@ -17,11 +17,7 @@ class ProductUpdateTest {
 
 	@Test
 	void contextLoads() {
-<<<<<<< HEAD
-		ProductVO obj = new ProductVO(null,"old Espresso",200,null,"","Espresso");
-=======
 		ProductVO obj = new ProductVO(1003,"blend1",10000,21,"","블렌드");
->>>>>>> a74c6008404c6d412951bd1880e036eb05418181
 		try {
 			biz.modify(obj);
 			System.out.println("Update OK");
