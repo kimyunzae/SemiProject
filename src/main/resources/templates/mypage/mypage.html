@@ -1,0 +1,85 @@
+<meta charset="utf-8">
+
+<style>
+#cate_name_products {
+	margin-bottom: 30px;
+}
+
+.side-navbar {
+	width: 180px;
+	height: 100%;
+	/* position: fixed; */
+	margin-left: -300px;
+	background-color: #100901;
+	transition: 0.5s;
+}
+
+.side-navbar>ul>li {
+	color: rgba(230, 167, 86, 0.9);
+}
+
+.nav-link:active, .nav-link:focus, .nav-link:hover {
+	background-color: #ffffff26;
+	color: #100901;
+}
+
+.my-container {
+	transition: 0.4s;
+}
+
+.active-nav {
+	margin-left: 0;
+}
+/* for main section */
+.active-cont {
+	margin-left: 180px;
+}
+
+#menu-btn {
+	background-color: #100901;
+	color: #fff;
+	margin-left: -62px;
+}
+
+@media screen and (max-width:1200px) {
+	.side-nav-section {
+		display: none;
+	}
+}
+</style>
+
+<section class="page-section cta">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 side-nav-section">
+				<div
+					class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column"
+					id="sidebar">
+					<ul class="nav flex-column text-dark w-100">
+						<h1 class="h3 text-light m-3">Sort By:</h1>
+						<a href="mypage" class="nav-link"><span class="mx-2">Profile</span>
+						</a>
+						<a href="address" class="nav-link"><span class="mx-2">Address</span>
+						</a>
+						<a href="order" class="nav-link"><span class="mx-2">Orders</span>
+						</a>
+						<a href="board" class="nav-link"><span class="mx-2">Activities</span>
+						</a>
+						<a href="setting" class="nav-link"><span class="mx-2">Settings</span>
+						</a>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="col-md-10 mx-auto">
+				<div th:replace="${center2} ? ${center2} : profile"></div>
+			</div>
+			
+			
+		</div>
+	</div>
+</section>
+
+

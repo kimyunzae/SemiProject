@@ -1,7 +1,5 @@
 package com.multi.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,32 +12,21 @@ public class MyPageController {
 
 	@Autowired
 	CustBiz biz;
-	
+
 	@RequestMapping("/mypage")
 	public String mypage(Model m) {
-		m.addAttribute("center","mypage");
+		m.addAttribute("center", "mypage/mypage");
+		m.addAttribute("center2", "mypage/profile");
 		return "index";
 	}
 	
-	@RequestMapping("/logout")
-	public String logout(Model m, HttpSession session) {
-		if(session != null) {
-			session.invalidate();
-		}
+	@RequestMapping("/address")
+	public String address(Model m) {
+		m.addAttribute("center", "mypage/mypage");
+		m.addAttribute("center2", "mypage/address");
 		return "index";
 	}
 
-	
-	
-	
-	
+
+
 }
-
-
-
-
-
-
-
-
-
