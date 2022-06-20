@@ -1,28 +1,27 @@
-package com.multi.cate;
+package com.multi.board;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CateBiz;
-import com.multi.vo.CateVO;
+import com.multi.biz.BoardBiz;
 
 @SpringBootTest
-class CateInsertTest {
+class BoardDeleteTest {
 	
 	@Autowired
-	CateBiz biz;
-
+	BoardBiz biz;
+	
 	@Test
 	void contextLoads() {
-		CateVO obj = new CateVO(12,"Espresso2",10);
 		try {
-			biz.register(obj);
-			System.out.println("Registered OK");
-			System.out.println(obj);
+			biz.remove(6);
+			System.out.print("Delete OK");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 }
+
+

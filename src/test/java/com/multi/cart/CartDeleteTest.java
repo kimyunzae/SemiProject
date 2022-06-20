@@ -1,4 +1,4 @@
-package com.multi.addrlist;
+package com.multi.cart;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import com.multi.vo.CartVO;
 import com.multi.vo.CustVO;
 
 @SpringBootTest
-class CartSelectAllTest {
+class CartDeleteTest {
 	
 	@Autowired
 	CartBiz biz;

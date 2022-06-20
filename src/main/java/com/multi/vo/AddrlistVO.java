@@ -17,8 +17,10 @@ public class AddrlistVO {
 	private String addr;
 	private String receivename;
 	
-	public AddrlistVO(int aid, String addr, String receivename) {
-		this.aid = aid;
+	
+	
+	public AddrlistVO(String uid, String addr, String receivename) {
+		this.uid = uid;
 		this.addr = addr;
 		this.receivename = receivename;
 	}

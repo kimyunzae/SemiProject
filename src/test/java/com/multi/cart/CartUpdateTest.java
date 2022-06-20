@@ -1,24 +1,23 @@
-package com.multi.cate;
+package com.multi.cart;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CateBiz;
-import com.multi.vo.CateVO;
+import com.multi.biz.CartBiz;
+import com.multi.vo.CartVO;
 
 @SpringBootTest
-class CateInsertTest {
+class CartUpdateTest {
 	
 	@Autowired
-	CateBiz biz;
-
+	CartBiz biz;
+	
 	@Test
 	void contextLoads() {
-		CateVO obj = new CateVO(12,"Espresso2",10);
+		CartVO obj = new CartVO(2,7);
 		try {
-			biz.register(obj);
-			System.out.println("Registered OK");
+			biz.modify(obj);
 			System.out.println(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
