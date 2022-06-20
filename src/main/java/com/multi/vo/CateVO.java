@@ -1,6 +1,6 @@
 package com.multi.vo;
 
-import lombok.AllArgsConstructor; 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,12 +12,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CateVO {
-	private int id;
-	private String name;
-	private int pid;
-	public CateVO(int id, String name) {
-		this.id = id;
-		this.name = name;
+	private int cid;
+	private String cname;
+	private int parentid;
+	
+	public CateVO(int cid, String cname) {
+		this.cid = cid;
+		this.cname = cname;
 	}
 
 	
