@@ -14,28 +14,27 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ProductVO {
-	private int id;
-	private String name;
-	private int price;
-	private Date regdate;
-	private int cid;
-	private String imgname;
-	private String catename;
-	public ProductVO(String name, int price, String imgname, String catename) {
-		this.name = name;
-		this.price = price;
-		this.imgname = imgname;
-		this.catename = catename;
-	}
-	public ProductVO(int id, String name, int price, int cid, String imgname, String catename) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
+	private Integer pid; // 상품번호
+	private String pname; // 상품명
+	private int pprice; // 가격
+	private Date regdate; // 상품 등록일
+	private int cid; // 카테고리 아이디
+	private String pimgname; // 상품 이미지
+	private String pcontents; // 상품글의 내용
+	private String cname; // 카테고리명
+	/* private Integer parentcid; // 상위 카테고리 아이디
+	 * private String parentcname; // 상위 카테고리명
+	 */
+
+	// DB 추가용 id(auto_increment) 없는 생성자
+	public ProductVO(String pname, int pprice, Date regdate, int cid, String pimgname, String pcontents) {
+		this.pname = pname;
+		this.pprice = pprice;
+		this.regdate = regdate;
 		this.cid = cid;
-		this.imgname = imgname;
-		this.catename = catename;
+		this.pimgname = pimgname;
+		this.pcontents = pcontents;
 	}
-	
 }
 
 
