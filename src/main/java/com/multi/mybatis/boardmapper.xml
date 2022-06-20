@@ -11,8 +11,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM board
 	</select>
 	
-	<insert id="insert" parameterType="boardVO">
+	<insert id="insert" parameterType="boardVO" useGeneratedKeys="true" keyProperty="bid">
+			<if	test="bid != 0"> 
 			INSERT INTO board VALUES (#{bid},#{pid},#{uid},#{title},#{contents})
+		</if>
+		<if	test="bid == 0"> 
+			INSERT INTO board VALUES (null,#{pid},#{uid},#{title},#{contents})
+		</if>
 	</insert>
 	<update id="update" parameterType="boardVO">
 		 	UPDATE board SET pid=#{pid},uid=#{uid},title=#{title},contents=#{contents} WHERE BID=#{bid}

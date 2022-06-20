@@ -8,23 +8,21 @@ import lombok.ToString;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
+
 public class CateVO {
 	private int cid;
 	private String cname;
-	private int parentid;
+	private Integer parentcid;
 	
 	public CateVO(int cid, String cname) {
 		this.cid = cid;
 		this.cname = cname;
 	}
 
-	
+
 }
-
-
-
 
 

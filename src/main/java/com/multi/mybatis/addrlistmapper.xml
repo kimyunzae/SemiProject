@@ -11,11 +11,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM addrlist
 	</select>
 	
-	<insert id="insert" parameterType="addrlistVO">
-			INSERT INTO addrlist VALUES (#{aid},#{addr},#{receivename})
+	<insert id="insert" parameterType="addrlistVO" useGeneratedKeys="true" keyProperty="aid">
+			INSERT INTO addrlist VALUES (NULL,#{uid},#{addr},#{receivename})
 	</insert>
 	<update id="update" parameterType="addrlistVO">
-		 	UPDATE addrlist SET addr=#{addr},receivename=#{receivename} WHERE AID=#{aid}
+		 	UPDATE addrlist SET uid=#{uid},addr=#{addr},receivename=#{receivename} WHERE AID=#{aid}
 	</update>
 	<delete id="delete" parameterType="int">
 		DELETE FROM addrlist WHERE AID=#{aid}

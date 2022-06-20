@@ -5,22 +5,15 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.CartMapper">
 	
 	<select id="select" parameterType="int" resultType="cartVO">
-		SELECT c.id, cu.id AS uid, ca.name AS catename, 
-		p.id AS pid, p.name AS pname, p.price as pprice, c.cnt FROM cart c
-		INNER JOIN cust cu ON c.uid = cu.id
-		INNER JOIN product p ON c.pid = p.id
-		INNER JOIN cate ca ON ca.id = p.cid
-		WHERE c.id = #{id}
+		
+		SELECT * FROM cart WHERE CRID=#{crid}
 	</select>
 	<select id="selectall" resultType="cartVO">
-		SELECT c.id, cu.id AS uid, ca.name AS catename, 
-		p.id AS pid, p.name AS pname, p.price as pprice, c.cnt FROM cart c
-		INNER JOIN cust cu ON c.uid = cu.id
-		INNER JOIN product p ON c.pid = p.id
-		INNER JOIN cate ca ON ca.id = p.cid
+	
+		SELECT * FROM cart
 	</select>
 	<insert id="insert" parameterType="cartVO">
-		INSERT INTO CART VALUES (#{uid},#{pid},#{cnt});
+		INSERT INTO CART VALUES (#{crid},#{uid},#{pid},#{cnt})
 	</insert>
 	<update id="update" parameterType="cartVO">
 		UPDATE CART SET CNT=#{cnt} WHERE CRID=#{crid}
