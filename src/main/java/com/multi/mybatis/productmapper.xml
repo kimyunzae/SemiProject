@@ -3,19 +3,19 @@
 <mapper namespace="com.multi.mapper.ProductMapper">
 
 	<select id="select" parameterType="int" resultType="productVO">
-		SELECT p.id, p.name, p.regdate, p.imgname,
-		p.cid, p.price, c.name as catename
+		SELECT p.pid, p.pname, p.pprice, p.regdate, p.cid,
+		p.pimgname, p.pcontents, c.cname as cname
 		FROM product p
-		INNER JOIN cate c ON p.cid = c.id
-		WHERE p.id = #{id}
+		INNER JOIN cate c ON p.cid = c.cid
+		WHERE p.pid = #{pid}
 	</select>
 	<select id="selectall" resultType="productVO">
-		SELECT p.id, p.name, p.regdate, p.imgname,
-		p.cid, p.price, c.name as catename
+		SELECT p.pid, p.pname, p.pprice, p.regdate, p.cid,
+		p.pimgname, p.pcontents, c.cname as cname
 		FROM product p
-		INNER JOIN cate c ON p.cid = c.id
+		INNER JOIN cate c ON p.cid = c.cid
 	</select>
-	<insert id="insert" parameterType="productVO"  useGeneratedKeys="true" keyProperty="pid">
+	<insert id="insert" parameterType="productVO" useGeneratedKeys="true" keyProperty="pid">
 		INSERT INTO PRODUCT VALUES (NULL,#{pname},#{pprice},curdate(),#{cid},#{pimgname},#{pcontents})
 	</insert>
 	<update id="update" parameterType="productVO">

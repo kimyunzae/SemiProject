@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.OrderdetailMapper">
+
+	<select id="select" parameterType="int" resultType="orderdetailVO">
+		SELECT * FROM ORDERDETAIL WHERE ODID = #{odid}
+	</select>
+	<select id="selectall" resultType="orderdetailVO">
+		SELECT * FROM ORDERDETAIL
+	</select>
+	<insert id="insert" parameterType="orderdetailVO" useGeneratedKeys="true" keyProperty="odid">
+		INSERT INTO ORDERDETAIL VALUES (NULL,#{orid},#{pid},
+		(SELECT P.PPRICE FROM PRODUCT P WHERE PID=#{pid}),
+		(SELECT P.PNAME FROM PRODUCT P WHERE PID=#{pid}),
+		#{cnt})
+	</insert>
+	<update id="update" parameterType="orderdetailVO">
+		UPDATE ORDERDETAIL SET ORID=#{orid},PID=#{pid},PRICE=#{price},PNAME=#{pname},CNT=#{cnt} WHERE ODID=#{odid}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM ORDERDETAIL WHERE ODID = #{odid}
+	</delete>
+</mapper>

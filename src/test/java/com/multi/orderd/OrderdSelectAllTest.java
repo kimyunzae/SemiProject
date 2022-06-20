@@ -1,27 +1,27 @@
-package com.multi.cust;
+package com.multi.orderd;
 
-import java.util.List;
+import java.util.List; 
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CustBiz;
-import com.multi.vo.CustVO;
+import com.multi.biz.OrderdBiz;
+import com.multi.vo.OrderdVO;
 
 @SpringBootTest
-class CustSelectAllTest {
-
+class OrderdSelectAllTest {
+	
 	@Autowired
-	CustBiz biz;
-
+	OrderdBiz biz;
+	
 	@Test
 	void contextLoads() {
-		List<CustVO> list = null;
+		List<OrderdVO> list = null;
 		try {
 			list = biz.get();
 			System.out.println("SelectAll OK");
-			for (CustVO obj : list) {
+			for (OrderdVO obj : list) {				
 				System.out.println(obj);
 			}
 		} catch (Exception e) {
@@ -30,3 +30,5 @@ class CustSelectAllTest {
 	}
 
 }
+
+

@@ -22,8 +22,8 @@ class ProductSelectAllTest {
 		List<ProductVO> list = null;
 		try {
 			list = biz.get();
+			System.out.println("SelectAll OK");
 			for (ProductVO obj : list) {
-				System.out.print("SelectAll OK");
 				System.out.println(obj);
 			}
 		} catch (Exception e) {

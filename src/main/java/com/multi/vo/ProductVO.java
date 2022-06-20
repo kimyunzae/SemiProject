@@ -34,6 +34,16 @@ public class ProductVO {
 		this.pimgname = pimgname;
 		this.pcontents = pcontents;
 	}
+	
+	// 업데이트용
+	public ProductVO(Integer pid, String pname, int pprice, int cid, String pimgname, String pcontents) {
+		this.pid = pid;
+		this.pname = pname;
+		this.pprice = pprice;
+		this.cid = cid;
+		this.pimgname = pimgname;
+		this.pcontents = pcontents;
+	}	
 }
 
 
