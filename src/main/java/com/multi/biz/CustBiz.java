@@ -10,7 +10,6 @@ import com.multi.mapper.CustMapper;
 import com.multi.vo.CustVO;
 @Service
 public class CustBiz implements Biz<String,CustVO>{
-
 	@Autowired
 	CustMapper dao;
 	

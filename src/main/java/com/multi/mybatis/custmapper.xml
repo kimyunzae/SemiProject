@@ -4,19 +4,19 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.CustMapper">
 	
-	<select id="select" parameterType="String" resultType="custVO">
+	<select id="select" parameterType="int" resultType="custVO">
 		SELECT * FROM CUST WHERE UID=#{uid}
 	</select>
 	<select id="selectall" resultType="custVO">
 		SELECT * FROM CUST
 	</select>
 	<insert id="insert" parameterType="custVO">
-		INSERT INTO CUST VALUES (#{uid},#{name},#{addr},#{pwd})
+		INSERT INTO CUST VALUES (#{uid},#{name},#{addr},#{pwd},#{email},#{phone})
 	</insert>
 	<update id="update" parameterType="custVO">
-		UPDATE CUST SET NAME=#{name},ADDR=#{addr},PWD=#{pwd} WHERE UID=#{uid}
+		UPDATE CUST SET NAME=#{name},ADDR=#{addr},PWD=#{pwd},EMAIL=${email},PHONE=${phone} WHERE UID=#{uid}
 	</update>
-	<delete id="delete" parameterType="String">
+	<delete id="delete" parameterType="int">
 		DELETE FROM CUST WHERE UID=#{uid}
 	</delete>
 	
