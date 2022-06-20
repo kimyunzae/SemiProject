@@ -26,11 +26,10 @@ public class ProductVO {
 	 * private String parentcname; // 상위 카테고리명
 	 */
 
-	// DB 추가용 id(auto_increment) 없는 생성자
-	public ProductVO(String pname, int pprice, Date regdate, int cid, String pimgname, String pcontents) {
+	// DB 추가용 id(auto_increment),regdate(curdate()) 없는 생성자
+	public ProductVO(String pname, int pprice, int cid, String pimgname, String pcontents) {
 		this.pname = pname;
 		this.pprice = pprice;
-		this.regdate = regdate;
 		this.cid = cid;
 		this.pimgname = pimgname;
 		this.pcontents = pcontents;
