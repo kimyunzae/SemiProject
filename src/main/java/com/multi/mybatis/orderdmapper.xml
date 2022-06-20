@@ -13,6 +13,13 @@
 	</insert>
 	<update id="update" parameterType="orderdVO">
 		UPDATE ORDERD SET UID=#{uid}
+		<!-- 이 구문들을 써먹으려면 web단에서 해당 필드 미업데이트시 널값을 제공하도록 하면 됨 -->
+		<choose>
+			<when test="totalprice == null or totalprice.equals('')"></when>
+			<otherwise>
+				,TOTALPRICE=#{totalprice}
+			</otherwise>
+		</choose>
 		<choose>
 			<when test="addr == null or addr.equals('')"></when>
 			<otherwise>
@@ -35,5 +42,10 @@
 	<delete id="delete" parameterType="int">
 		DELETE FROM ORDERD WHERE ORID=#{orid}
 	</delete>
+	<update id="updatetotalprice" parameterType="int">
+		UPDATE ORDERD SET totalprice=(
+			SELECT sum(price*cnt) FROM ORDERDETAIL WHERE orid = #{orid}
+		) WHERE orid = #{orid}
+	</update>
 
 </mapper>

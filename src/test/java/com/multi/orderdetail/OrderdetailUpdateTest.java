@@ -1,26 +1,24 @@
-package com.multi.product;
+package com.multi.orderdetail;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.CustBiz;
-import com.multi.biz.ProductBiz;
-import com.multi.vo.CustVO;
-import com.multi.vo.ProductVO;
+import com.multi.biz.OrderdetailBiz;
+import com.multi.vo.OrderdetailVO;
 
 @SpringBootTest
-class ProductSelectTest {
+class OrderdetailUpdateTest {
 	
 	@Autowired
-	ProductBiz biz;
-	
+	OrderdetailBiz biz;
+
 	@Test
 	void contextLoads() {
-		ProductVO obj = null;
+		OrderdetailVO obj = new OrderdetailVO(5,4,1000,100,"coffee0",2);
 		try {
-			obj = biz.get(1003);
-			System.out.println("Select OK");
+			biz.modify(obj);
+			System.out.println("Update OK");
 			System.out.println(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -28,5 +26,3 @@ class ProductSelectTest {
 	}
 
 }
-
-

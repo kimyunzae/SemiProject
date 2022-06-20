@@ -18,6 +18,7 @@ class CustUpdateTest {
 		CustVO obj = new CustVO("id05","이진만","서울","pwd05", "abc@naver.com", "01011112222");
 		try {
 			biz.modify(obj);
+			System.out.println("Update OK");
 			System.out.println(obj);
 		} catch (Exception e) {
 			e.printStackTrace();

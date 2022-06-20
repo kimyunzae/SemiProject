@@ -17,9 +17,10 @@ class ProductUpdateTest {
 
 	@Test
 	void contextLoads() {
-		ProductVO obj = new ProductVO(343,"old Espresso",200,1,"","Espresso");
+		ProductVO obj = new ProductVO(1003,"blend1",10000,21,"","블렌드");
 		try {
 			biz.modify(obj);
+			System.out.println("Update OK");
 			System.out.println(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
