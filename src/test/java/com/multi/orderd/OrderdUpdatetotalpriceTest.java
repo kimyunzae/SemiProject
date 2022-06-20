@@ -16,9 +16,10 @@ class OrderdUpdatetotalpriceTest {
 	@Test
 	void contextLoads() {
 		try {
-			biz.sumTotalprice(4);
+			int updatingOrderd = 4;
+			biz.sumTotalprice(updatingOrderd);
 			System.out.println("Total price Update OK");
-			System.out.println(biz.get(4));
+			System.out.println(biz.get(updatingOrderd));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
