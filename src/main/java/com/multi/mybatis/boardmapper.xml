@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.BoardMapper">
 	
 	<select id="select" parameterType="int" resultType="boardVO">
-		SELECT * FROM board WHERE BID=#{bid}
+        SELECT * FROM board WHERE bid=#{bid}
 	</select>
 	<select id="selectall" resultType="boardVO">
 		SELECT * FROM board
