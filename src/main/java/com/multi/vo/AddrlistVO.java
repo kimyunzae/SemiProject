@@ -18,7 +18,7 @@ public class AddrlistVO {
 	private String receivename;
 	
 	
-	
+	//aid(auto_increment) 없는거
 	public AddrlistVO(String uid, String addr, String receivename) {
 		this.uid = uid;
 		this.addr = addr;
