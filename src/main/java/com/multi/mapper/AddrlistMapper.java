@@ -11,10 +11,10 @@ import com.multi.vo.AddrlistVO;
 @Mapper
 public interface AddrlistMapper {
 
-	public void insert(AddrlistVO obj) throws Exception;
-	public void delete(int obj) throws Exception;
-	public void update(AddrlistVO obj) throws Exception;
-	public AddrlistVO select(int obj) throws Exception;
+	public void insert(AddrlistVO v) throws Exception;
+	public void delete(int k) throws Exception;
+	public void update(AddrlistVO v) throws Exception;
+	public AddrlistVO select(int k) throws Exception;
 	public List<AddrlistVO> selectall() throws Exception;
-	
+	public List<AddrlistVO> selectpercust(String uid) throws Exception;
 }
