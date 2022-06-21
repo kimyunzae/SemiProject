@@ -53,8 +53,7 @@ public class CustBiz implements Biz<String, CustVO> {
 			List<AddrlistVO> addrlist = null;
 			try {
 				addrlist = adao.selectpercust(v.getUid());
-				for (int i = 0; i < addrlist.size(); i++) {
-					AddrlistVO obj = addrlist.get(i);
+				for (AddrlistVO obj : addrlist) {
 					if (obj.getAid() == v.getDef_ship_addr()) {
 						dao.updateDefShipAddr(v);
 					}
