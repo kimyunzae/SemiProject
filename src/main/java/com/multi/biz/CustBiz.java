@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.multi.frame.Biz;
 import com.multi.mapper.CustMapper;
+import com.multi.vo.AddrlistVO;
 import com.multi.vo.CustVO;
 @Service
 public class CustBiz implements Biz<String,CustVO>{
@@ -36,6 +37,15 @@ public class CustBiz implements Biz<String,CustVO>{
 	@Override
 	public List<CustVO> get() throws Exception {
 		return dao.selectall();
+	}
+	
+	public void modifyDefShipAddr(CustVO v) throws Exception {
+		dao.updateDefShipAddr(v);
+	}
+	
+	public AddrlistVO getAsAddrlistVO(String k) throws Exception {
+		return dao.selectAsAddrlistVO(k);
+		// aid는 0으로 나옵니다 0이면 따로 처리하는걸 코딩해야 함
 	}
 	
 }
