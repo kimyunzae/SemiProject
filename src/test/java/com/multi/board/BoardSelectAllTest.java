@@ -21,7 +21,6 @@ class BoardSelectAllTest {
 		try {
 			list = biz.get();
 			for (BoardVO obj : list) {
-				System.out.print("SelectAll OK");
 				System.out.println(obj);
 			}
 		} catch (Exception e) {

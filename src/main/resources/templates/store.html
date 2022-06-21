@@ -1,9 +1,73 @@
 <meta charset="utf-8">
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=aedbb0333f88f0e751a37789365489c2"></script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						var mapContainer = document.getElementById('map'), mapOption = {
+							center : new kakao.maps.LatLng(37.503376,
+									127.049776),
+							level : 3
+						};
+
+						var map = new kakao.maps.Map(mapContainer, mapOption);
+
+						var markerPosition = new kakao.maps.LatLng(37.503376,
+								127.049776);
+
+						var marker = new kakao.maps.Marker({
+							position : markerPosition
+						});
+
+						marker.setMap(map);
+
+						var iwContent = '<div style="padding:5px;">T7 Coffee! <br><a href="https://map.kakao.com/link/map/T7 Coffee!,37.503376,127.049776" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/Hello World!," style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+						iwPosition = new kakao.maps.LatLng(37.503376,
+								127.049776)
+
+						var infowindow = new kakao.maps.InfoWindow({
+							position : iwPosition,
+							content : iwContent
+						});
+
+						infowindow.open(map, marker);
+					});
+</script>
+<section class="page-section about-heading">
+	<div class="container">
+		<img class="img-fluid rounded about-heading-img mb-3 mb-lg-0"
+			src="assets/img/about.jpg" alt="..." />
+		<div class="about-heading-content">
+			<div class="row">
+				<div class="col-xl-9 col-lg-10 mx-auto">
+					<div class="bg-faded rounded p-5">
+						<h2 class="section-heading mb-8">
+							<span class="section-heading-upper">Strong Coffee, Strong
+								Roots</span> <span class="section-heading-lower">About Our Cafe</span>
+						</h2>
+						<p>Founded in 1987 by the Hernandez brothers, our
+							establishment has been serving up rich coffee sourced from
+							artisan farmers in various regions of South and Central America.
+							We are dedicated to travelling the world, finding the best
+							coffee, and bringing back to you here in our cafe.</p>
+						<p class="mb-0">
+							We guarantee that you will fall in <em>lust</em> with our
+							decadent blends the moment you walk inside until you finish your
+							last sip. Join us for your daily routine, an outing with friends,
+							or simply just to enjoy some alone time.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <section class="page-section cta">
 	<div class="container">
-		<div class="row">
-			<div class="col-xl-9 mx-auto">
-				<div class="cta-inner bg-faded text-center rounded">
+		<div class="cta-inner bg-faded text-center rounded">
+			<div class="row">
+				<div class="col-sm-6">
 					<h2 class="section-heading mb-5">
 						<span class="section-heading-upper">Come On In</span> <span
 							class="section-heading-lower">We're Open</span>
@@ -31,44 +95,24 @@
 							Saturday <span class="ms-auto">9:00 AM to 5:00 PM</span>
 						</li>
 					</ul>
-					<p class="address mb-5">
-						<em> <strong>1116 Orchard Street</strong> <br /> Golden
-							Valley, Minnesota
-						</em>
-					</p>
-					<p class="mb-0">
-						<small><em>Call Anytime</em></small> <br /> (317) 585-8468
-					</p>
 				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="page-section about-heading">
-	<div class="container">
-		<img class="img-fluid rounded about-heading-img mb-3 mb-lg-0"
-			src="assets/img/about.jpg" alt="..." />
-		<div class="about-heading-content">
-			<div class="row">
-				<div class="col-xl-9 col-lg-10 mx-auto">
-					<div class="bg-faded rounded p-5">
-						<h2 class="section-heading mb-4">
-							<span class="section-heading-upper">Strong Coffee, Strong
-								Roots</span> <span class="section-heading-lower">About Our Cafe</span>
-						</h2>
-						<p>Founded in 1987 by the Hernandez brothers, our
-							establishment has been serving up rich coffee sourced from
-							artisan farmers in various regions of South and Central America.
-							We are dedicated to travelling the world, finding the best
-							coffee, and bringing back to you here in our cafe.</p>
-						<p class="mb-0">
-							We guarantee that you will fall in <em>lust</em> with our
-							decadent blends the moment you walk inside until you finish your
-							last sip. Join us for your daily routine, an outing with friends,
-							or simply just to enjoy some alone time.
-						</p>
-					</div>
+
+				<div class="col-sm-6">
+					<h2 class="section-heading mb-5">
+						<div class="section-heading-upper">지도</div>
+						<div class="section-heading-lower">여기있어요</div>
+					</h2>
+					<div id="map" class="col-xl-6 mx-auto"
+						style="width: 100%; height: 300px;"></div>
 				</div>
+				<p class="address">
+					<em> <strong>1116 Orchard Street</strong> <br /> Golden
+						Valley, Minnesota
+					</em>
+				</p>
+				<p class="mb-0">
+					<small><em>Call Anytime</em></small> <br /> (317) 585-8468
+				</p>
 			</div>
 		</div>
 	</div>
