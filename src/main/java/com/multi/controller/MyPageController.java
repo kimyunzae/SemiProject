@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.biz.AddrlistBiz;
 import com.multi.biz.CustBiz;
 
 @Controller
@@ -12,6 +13,10 @@ public class MyPageController {
 
 	@Autowired
 	CustBiz biz;
+	
+	@Autowired
+	AddrlistBiz abiz;
+	
 
 	@RequestMapping("/mypage")
 	public String mypage(Model m) {
@@ -20,13 +25,13 @@ public class MyPageController {
 		return "index";
 	}
 	
-	
 	@RequestMapping("/address")
 	public String address(Model m) {
 		m.addAttribute("center", "mypage/mypage");
 		m.addAttribute("center2", "mypage/address");
 		return "index";
 	}
+	
 	
 	@RequestMapping("/orders")
 	public String orders(Model m) {
@@ -42,13 +47,6 @@ public class MyPageController {
 		return "index";
 	}
 	
-	@RequestMapping("/setting")
-	public String setting(Model m) {
-		m.addAttribute("center", "mypage/mypage");
-		m.addAttribute("center2", "mypage/setting");
-		return "index";
-	}
-
-
+	
 
 }

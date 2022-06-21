@@ -1,6 +1,6 @@
 package com.multi.frame;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.transaction.annotation.Transactional;
 
