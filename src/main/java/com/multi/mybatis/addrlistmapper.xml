@@ -20,6 +20,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		DELETE FROM addrlist WHERE AID=#{aid}
 	</delete>
+	<select id="selectpercust" parameterType="String" resultType="addrlistVO">
+		SELECT * FROM addrlist a WHERE a.uid = #{uid}
+		UNION
+		SELECT 0 AS aid,u.uid AS uid,u.addr AS addr,u.name AS receivename FROM cust u WHERE u.uid = #{uid}; 
+	</select>
 	
 </mapper>
 

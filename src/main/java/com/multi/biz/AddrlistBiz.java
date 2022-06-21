@@ -42,6 +42,8 @@ public class AddrlistBiz implements Biz<Integer, AddrlistVO> {
 		return dao.selectall();
 	}
 	
-	
+	public List<AddrlistVO> getpercust(String uid) throws Exception {
+		return dao.selectpercust(uid);
+	}
 
 }
