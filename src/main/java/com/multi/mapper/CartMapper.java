@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.multi.vo.CartVO;
-import com.multi.vo.CateVO;
+
 
 @Repository
 @Mapper

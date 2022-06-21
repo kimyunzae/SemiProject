@@ -1,6 +1,90 @@
 <meta charset="utf-8">
 
-<div class="cta-inner bg-faded text-center rounded">
+<style>
+.profile-section {
+	 background-color:  #f3d3ab;
+}
+
+.form-control:focus {
+	box-shadow: none;
+	border-color: #BA68C8
+}
+
+.profile-button {
+	background: rgba(230, 167, 86, 0.9);
+	box-shadow: none;
+	border: none
+}
+
+.profile-button:hover {
+	background: #100901;
+	color: white;
+}
+
+.labels {
+	font-size: 11px
+}
+</style>
+<div class="container rounded cta-inner profile-section">
+	<div class="row">
+		<div class="col-md-4 border-right">
+			<div
+				class="d-flex flex-column align-items-center text-center p-3 py-5">
+				<img class="rounded-circle mt-5" width="150px"
+					src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+				<span th:text="${session.logincust.name}" class="font-weight-bold">Edogaru</span><span
+					th:text="${session.logincust.email}" class="text-black-50">edogaru@mail.com.my</span><span>
+				</span>
+			</div>
+		</div>
+		<div class="col-md-8 border-right">
+			<div class="p-3 py-5">
+				<div class="d-flex justify-content-between align-items-center mb-3">
+					<h4 class="text-right">Profile</h4>
+				</div>
+				<div class="row mt-2">
+					<div class="col-md-12">
+						<label class="labels">Name</label><input type="text"
+							class="form-control" th:placeholder="${session.logincust.name}"
+							value="">
+					</div>
+
+				</div>
+				<div class="row mt-3">
+					<div class="col-md-12">
+						<label class="labels">Email ID</label><input type="text"
+							class="form-control" th:placeholder="${session.logincust.email}"
+							value="">
+					</div>
+					<div class="col-md-12">
+						<label class="labels">Mobile Number</label><input type="text"
+							class="form-control" th:placeholder="${session.logincust.phone}"
+							value="">
+					</div>
+					<div class="col-md-12">
+						<label class="labels">Address</label>
+						<select class="form-select" aria-label="Default select example">
+							<option th:text="${session.logincust.addr}" selected></option>
+							<option th:text="${session.logincust.addr}" value="1">One</option>
+							<option value="2">Two</option>
+							<option value="3">Three</option>
+						</select> 
+					</div>
+				</div>
+
+				<div class="mt-5 text-center">
+					<button class="btn btn-primary profile-button" type="button">Edit
+						Profile</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
+<!--  <div class="cta-inner bg-faded text-center rounded">
 	<h2 class="section-heading mb-5">
 		<span class="section-heading-upper">Come On In</span> 
 		<span class="section-heading-lower" th:text="${session.logincust.name} + ' 님' ">My page</span>
@@ -15,3 +99,4 @@
 		<small><em>Call Anytime</em></small> <br /> (317) 585-8468
 	</p>
 </div>
+  -->

@@ -16,4 +16,5 @@ public interface AddrlistMapper {
 	public void update(AddrlistVO obj) throws Exception;
 	public AddrlistVO select(int obj) throws Exception;
 	public List<AddrlistVO> selectall() throws Exception;
+	
 }

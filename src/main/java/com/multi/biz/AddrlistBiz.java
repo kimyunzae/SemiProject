@@ -41,5 +41,7 @@ public class AddrlistBiz implements Biz<Integer, AddrlistVO> {
 	public List<AddrlistVO> get() throws Exception {
 		return dao.selectall();
 	}
+	
+	
 
 }

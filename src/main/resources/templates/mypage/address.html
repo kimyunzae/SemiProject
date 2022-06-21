@@ -1,17 +1,58 @@
 <meta charset="utf-8">
+<style>
+.main {
+	height: 100%;
+	width: 100%;
+}
+
+.d-none {
+	display: none;
+}
+
+.board {
+	height: 100%;
+	margin: auto;
+}
+
+.table {
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.thead td {
+	background: #A2B2B2;
+}
+
+.tbody {
+	border-bottom: 2px solid black;
+}
+</style>
+
 
 <div class="cta-inner bg-faded text-center rounded">
-	<h2 class="section-heading mb-5">
-		<span class="section-heading-upper">Address On In</span> <span
-			class="section-heading-lower">My page</span>
+	<h2 class="section-heading mb-3">
+		<span class="section-heading-upper"
+			th:text="${session.logincust.name} + ' 님 Address List'"></span>
 	</h2>
-
-	<p class="address mb-5">
-		<em> <strong>1116 Orchard Street</strong> <br /> Golden Valley,
-			Minnesota
-		</em>
-	</p>
-	<p class="mb-0">
-		<small><em>Call Anytime</em></small> <br /> (317) 585-8468
-	</p>
+	<section class="main">
+		<h1 class="d-none">게시판</h1>
+		<div class="board">
+			<table class="table">
+				<thead class="thead">
+					<tr>
+						<td>No.</td>
+						<td>Receiver</td>
+						<td>Registered</td>
+					</tr>
+				</thead>
+				<tbody class="tbody">
+					<tr>
+						<td>1</td>
+						<td>작성자</td>
+						<td>2020-02-02</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
 </div>
