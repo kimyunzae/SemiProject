@@ -20,8 +20,8 @@ class AddrlistSelectAllTest {
 		List<AddrlistVO> list = null;
 		try {
 			list = biz.get();
+			System.out.print("SelectAll OK");
 			for (AddrlistVO obj : list) {
-				System.out.print("SelectAll OK");
 				System.out.println(obj);
 			}
 		} catch (Exception e) {

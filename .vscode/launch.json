@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TeaCoffeeApplication<TeaCoffee>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.multi.TeaCoffeeApplication",
+            "projectName": "TeaCoffee",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

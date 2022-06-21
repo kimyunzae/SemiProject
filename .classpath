@@ -28,9 +28,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/test-classes" path="target/generated-test-sources/test-annotations">
+	<classpathentry kind="lib" path="C:/eclipse/lombok.jar"/>
+	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
-			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="ignore_optional_problems" value="true"/>
@@ -44,10 +44,9 @@
 	</classpathentry>
 	<classpathentry kind="src" output="target/test-classes" path=".apt_generated_tests">
 		<attributes>
-			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/eclipse/lombok.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
