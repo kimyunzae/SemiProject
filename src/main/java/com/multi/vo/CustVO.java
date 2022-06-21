@@ -19,6 +19,12 @@ public class CustVO {
 	private String pwd; // 비밀번호
 	private String email; // 이메일
 	private String phone; // 폰번호
+	private Integer def_ship_addr; // addrlist의 aid를 가리킴, 0일 경우 cust를 찾게 해야 함
+	
+	public CustVO(String uid, int def_ship_addr) {
+		this.uid = uid;
+		this.def_ship_addr = def_ship_addr;
+	}
 }
 
 

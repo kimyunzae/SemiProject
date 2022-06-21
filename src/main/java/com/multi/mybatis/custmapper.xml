@@ -11,14 +11,20 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM CUST
 	</select>
 	<insert id="insert" parameterType="custVO">
-		INSERT INTO CUST VALUES (#{uid},#{name},#{addr},#{pwd},#{email},#{phone})
+		INSERT INTO CUST VALUES (#{uid},#{name},#{addr},#{pwd},#{email},#{phone},#{def_ship_addr})
 	</insert>
 	<update id="update" parameterType="custVO">
-		UPDATE CUST SET NAME=#{name},ADDR=#{addr},PWD=#{pwd},EMAIL=#{email},PHONE=#{phone} WHERE UID=#{uid}
+		UPDATE CUST SET NAME=#{name},ADDR=#{addr},PWD=#{pwd},EMAIL=#{email},PHONE=#{phone},DEF_SHIP_ADDR=#{def_ship_addr} WHERE UID=#{uid}
 	</update>
 	<delete id="delete" parameterType="String">
 		DELETE FROM CUST WHERE UID=#{uid}
 	</delete>
+	<update id="updateDefShipAddr" parameterType="custVO">
+		UPDATE CUST SET DEF_SHIP_ADDR=${def_ship_addr} WHERE UID=#{uid}
+	</update>
+	<select id="selectAsAddrlistVO" parameterType="String" resultType="addrlistVO">
+		SELECT 0 AS aid,uid,addr,u.name AS receivename FROM cust u WHERE u.uid = #{uid};
+	</select>
 	
 </mapper>
 
