@@ -8,17 +8,17 @@ import com.multi.biz.CustBiz;
 import com.multi.vo.CustVO;
 
 @SpringBootTest
-class CustInsertTest {
+class CustUpdateDefShipAddrTest {
 	
 	@Autowired
 	CustBiz biz;
 
 	@Test
 	void contextLoads() {
-		CustVO obj = new CustVO("id05", "허겸", "강남", "pwd05", "abc@naver.com", "01011112222",null);
+		CustVO obj = new CustVO("id01",8);
 		try {
-			biz.register(obj);
-			System.out.println("Registered OK");
+			biz.modifyDefShipAddr(obj);
+			System.out.println("Update OK");
 			System.out.println(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
