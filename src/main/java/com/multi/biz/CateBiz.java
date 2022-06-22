@@ -41,5 +41,10 @@ public class CateBiz implements Biz<Integer,CateVO>{
 		return dao.selectall();
 	}
 
+	public List<CateVO> getmain() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

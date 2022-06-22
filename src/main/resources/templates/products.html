@@ -1,5 +1,17 @@
 <meta charset="utf-8">
 <style>
+.card {
+	background-color: #f3d3ab;
+}
+
+.card-title {
+	border-bottom: 1px solid black;
+}
+
+.product-price {
+	margin-right: 10px;
+}
+
 #cate_name_products {
 	margin-bottom: 30px;
 }
@@ -67,171 +79,84 @@
 					id="sidebar">
 					<ul class="nav flex-column text-dark w-100">
 						<h1 class="h3 text-light m-3">Sort By:</h1>
-						<li href="#" class="nav-link"><span class="mx-2">Espresso</span>
+						<li href="#" th:each="c:${catelist}" class="nav-link"><span class="mx-2">Espresso</span>
 						</li>
-						<li href="#" class="nav-link"><span class="mx-2">Decaffein</span>
-						</li>
-						<li href="#" class="nav-link"><span class="mx-2">Ethical</span>
-						</li>
-						<li href="#" class="nav-link"><span class="mx-2">Organic</span>
-						</li>
-						<li href="#" class="nav-link"><span class="mx-2">Single
-								Origin</span></li>
+						
 					</ul>
 				</div>
 			</div>
 
 			<div class="col-md-10">
 				<div class="cta-inner bg-faded text-center rounded pt-5 pb-5">
-					<h2 id="cate_name_products">Espresso</h2>
+					<h2 id="cate_name_products text-center">Espresso</h2>
 					<div class="container">
 						<div class="row">
+
 							<div class="card col-lg-3 col-sm-6">
 								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
+									src="assets/img/espresso/FairTrade.png" alt="Card image">
 								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
+									<h5 class="card-title pb-1">Fair Trade Espresso</h5>
+
+
+									<span class="product-price">₩20,000</span> <a href="#"
+										class="btn btn-primary" type="button" data-bs-toggle="modal"
+										data-bs-target="#myModal"><i class="fas fa-shopping-bag"></i></a>
 								</div>
 							</div>
 
 							<div class="modal" id="myModal">
-								<div class="modal-dialog">
+								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
 
 										<!-- Modal Header -->
 										<div class="modal-header">
-											<h4 class="modal-title">Modal Heading</h4>
+											<h4 class="modal-title">Product Information</h4>
 											<button type="button" class="btn-close"
 												data-bs-dismiss="modal"></button>
 										</div>
-
 										<!-- Modal body -->
-										<div class="modal-body">Modal body..</div>
-
+										<div class="modal-body">
+											<div>
+												<img src="assets/img/espresso/FairTrade.png"
+													alt="Image Description" style="float: left">
+											</div>
+											<div style="vertical-align: bottom; text-align: left">
+												<span class="d-block" style="font-size: 2rem">coffee</span>
+												<span class="d-block" style="font-size: 1.5rem">2022-20-22</span>
+												<span class="d-block" style="font-size: 0.9rem">Ei!
+													wie schmeckt der Coffee süße, Lieblicher als tausend Küsse,
+													Milder als Muskatenwein. Coffee, Coffee muss ich haben</span>
+											</div>
+											<div class=”prices”>
+												<div class=”amount”>
+													<h3 style="vertical-align: bottom; text-align: right">
+														<b>$2.99</b>
+													</h3>
+												</div>
+											</div>
+										</div>
 										<!-- Modal footer -->
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger"
+												data-bs-dismiss="modal">
+												<i class="fas fa-shopping-bag"></i> Add
+											</button>
+											<button type="button" class="btn btn-danger"
 												data-bs-dismiss="modal">Close</button>
 										</div>
-
 									</div>
 								</div>
 							</div>
 
-							<div class="card col-lg-3 col-sm-6">
-								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
-								</div>
-							</div>
 
 
-							<div class="card col-lg-3 col-sm-6">
-								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
-								</div>
-							</div>
 
-
-							<div class="card col-lg-3 col-sm-6">
-								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
-								</div>
-							</div>
-
-
-							<div class="card col-lg-3 col-sm-6">
-								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
-								</div>
-							</div>
-
-
-							<div class="card col-lg-3 col-sm-6">
-								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
-								</div>
-							</div>
-
-							<div class="card col-lg-3 col-sm-6">
-								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
-								</div>
-							</div>
-
-							<div class="card col-lg-3 col-sm-6">
-								<img class="card-img-top"
-									src="assets/img/espresso/FairTrade.jpeg" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title">Fair Trade Espresso</h5>
-									<a href="#" class="btn btn-primary"><i
-										class="fas fa-shopping-bag"></i></a> <a href="#"
-										class="btn btn-primary"><i class="fas fa-check-circle"></i></a>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
-										class="fas fa-info-circle"></i> </a>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-	</div>
 	</div>
 </section>
 
