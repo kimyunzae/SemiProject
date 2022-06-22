@@ -26,6 +26,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		DELETE FROM board WHERE BID=#{bid}
 	</delete>
 	
+	<select id="selectboard" resultType="boardVO">
+		SELECT b.pid, b.bid, b.uid
+		FROM board b
+		RIGHT JOIN product p on #{p.pid} = #{b.pid}
+		WHERE #{b.pid} IS NOT NULL; 
+	</select>
+	
 </mapper>
 
 

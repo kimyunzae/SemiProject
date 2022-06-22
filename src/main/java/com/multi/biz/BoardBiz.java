@@ -43,6 +43,12 @@ public class BoardBiz implements Biz<Integer, BoardVO> {
 		return dao.selectall();
 	}
 
+	public List<BoardVO> getboard(Integer k) throws Exception {
+		return dao.selectboard(k);
+	}
 
+//	public BoardVO getboard(Integer k) {
+//		return dao.get;
+//	}
 
 }

@@ -38,7 +38,7 @@ public class MainController {
 		m.addAttribute("center", "store");
 		return "index";
 	}
-	
+
 	@RequestMapping("/cart")
 	public String cart(Model m) {
 		m.addAttribute("center", "cart");
@@ -90,7 +90,8 @@ public class MainController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			return "redirect:/login";
+			
+			return "redirect:/login?msg=f";
 		}
 		return "index";
 	}

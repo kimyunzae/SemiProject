@@ -18,4 +18,5 @@ public interface CustMapper {
 	public List<CustVO> selectall() throws Exception;
 	public void updateDefShipAddr(CustVO v) throws Exception;
 	public AddrlistVO selectAsAddrlistVO(String k) throws Exception;
+
 }
