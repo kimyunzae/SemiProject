@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<link href="/css/member.css" rel="stylesheet"> 
+<link href="/css/member.css" rel="stylesheet">
 <script>
 	(function() {
 		'use strict'
@@ -16,7 +16,7 @@
 		})
 	})()
 
-	$(document).ready(function() {
+/* 	$(document).ready(function() {
 		$('#login_bt').click(function() {
 
 			$('#login_form').attr({
@@ -24,8 +24,31 @@
 				'action' : '/loginimpl'
 			});
 			$('#login_form').submit();
+			$.ajax({
+				url : 'checklogin',
+				data : {
+					uid : inputuid
+				},
+				success : function(result) {
+					if (result == '1') {
+						alert("로그인에 성공하셨습니다")
+					} else {
+						alert("id와 pwd를 확인하세요")
+					}
+				}
+			})
+		}); */
+		$(document).ready(function() {
+			$('#login_bt').click(function() {
+
+				$('#login_form').attr({
+					'method' : 'post',
+					'action' : '/loginimpl'
+				});
+				$('#login_form').submit();
+			});
 		});
-	});
+
 </script>
 <section class="page-section">
 	<div class="container">

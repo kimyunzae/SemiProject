@@ -19,6 +19,13 @@ public class BoardVO {
 	private String contents;
 	
 	
+	// 상품별 글 목록 불러올때 bid, uid, pid
+	public BoardVO(int bid, int pid, String uid) {
+		this.bid = bid;
+		this.pid = pid;
+		this.uid = uid;
+	}
+
 	}
 	
 

@@ -15,7 +15,7 @@ class CateInsertTest {
 
 	@Test
 	void contextLoads() {
-		CateVO obj = new CateVO(12,"Espresso2",10);
+		CateVO obj = new CateVO(60,"new");
 		try {
 			biz.register(obj);
 			System.out.println("Registered OK");
