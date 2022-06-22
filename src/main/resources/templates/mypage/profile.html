@@ -62,17 +62,23 @@
 							value="">
 					</div>
 					<div class="col-md-12">
-						<label class="labels">Address</label> <select class="form-select"
-							aria-label="Default select example" th:each="v:${aidsoncust}">
+						<label class="labels">Address</label> <select class="form-select" aria-label="Default select example" th:each="v:${aidsoncust}">
 							<option th:text="${v.addr}" th:value="${v.aid}" th:selected="${v.aid = session.logincust.def_ship_addr}"></option>
 						</select>
 					</div>
 				</div>
 
 				<div class="mt-5 text-center">
-					<button class="btn btn-primary profile-button" type="button">Edit
-						Profile</button>
+					<button class="btn btn-primary profile-button" type="button">
+					Edit Profile
+					</button>
+
+					<button class="btn btn-primary profile-button m-1" type="button">
+					Save
+					</button>
 				</div>
+
+
 			</div>
 		</div>
 

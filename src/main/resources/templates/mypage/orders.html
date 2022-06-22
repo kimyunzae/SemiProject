@@ -40,7 +40,7 @@
 			<table class="table">
 				<thead class="thead">
 					<tr>
-						<td>No.</td>	
+						<td>No.</td>
 						<td>Order Date</td>
 						<td>Total Price</td>
 						<td>Address</td>
@@ -50,14 +50,15 @@
 					</tr>
 				</thead>
 				<tbody class="tbody">
-					<tr>
-						<td>1</td>
-						<td>2020-02-02</td>
-						<td>30000</td>
-						<td>서울</td>
-						<td>최두식</td>
-						<td>Delivered</td>
-						<td>Card</td>
+					<tr th:each="o:${orderd}" th:if="${o.uid == session.logincust.uid}">
+						<td th:text=${o.uid}>1</td>
+						<td th:text=${o.ordate}>2020-02-02</td>
+						<td th:text=${o.totalprice}>30000</td>
+						<td th:text=${o.addr}>서울</td>
+						<td th:text=${o.receivename}>최두식</td>
+						<td th:text=${o.status}>Delivered</td>
+						<td th:text=${o.transaction}>transaction</td>
+
 					</tr>
 				</tbody>
 			</table>

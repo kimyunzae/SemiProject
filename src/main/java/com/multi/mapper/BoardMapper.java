@@ -16,4 +16,5 @@ public interface BoardMapper {
 	public void update(BoardVO obj) throws Exception;
 	public BoardVO select(int obj) throws Exception;
 	public List<BoardVO> selectall() throws Exception;
+	public List<BoardVO> selectboard(int obj) throws Exception;
 }

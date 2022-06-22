@@ -15,7 +15,7 @@ class CateDeleteTest {
 	@Test
 	void contextLoads() {
 		try {
-			biz.remove(12);
+			biz.remove(11);
 			System.out.print("Delete OK");
 		} catch (Exception e) {
 			System.out.print("Delete FAIL");

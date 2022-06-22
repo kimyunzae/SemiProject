@@ -16,4 +16,5 @@ public interface CateMapper {
 	public void update(CateVO obj) throws Exception;
 	public CateVO select(int obj) throws Exception;
 	public List<CateVO> selectall() throws Exception;
+	public List<CateVO> selectmain() throws Exception;
 	}

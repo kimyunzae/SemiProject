@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import com.multi.frame.Biz;
 import com.multi.mapper.CateMapper;
 import com.multi.vo.CateVO;
+
 @Service
-public class CateBiz implements Biz<Integer,CateVO>{
+public class CateBiz implements Biz<Integer, CateVO> {
 
 	@Autowired
 	CateMapper dao;
-	
-	
+
 	@Override
 	public void register(CateVO v) throws Exception {
 		dao.insert(v);
@@ -22,18 +22,18 @@ public class CateBiz implements Biz<Integer,CateVO>{
 
 	@Override
 	public void modify(CateVO v) throws Exception {
-		dao.update(v);		
+		dao.update(v);
 	}
 
 	@Override
 	public void remove(Integer k) throws Exception {
-		dao.delete(k);		
-		
+		dao.delete(k);
+
 	}
 
 	@Override
 	public CateVO get(Integer k) throws Exception {
-		return 	dao.select(k);		
+		return dao.select(k);
 	}
 
 	@Override
@@ -41,10 +41,8 @@ public class CateBiz implements Biz<Integer,CateVO>{
 		return dao.selectall();
 	}
 
-	public List<CateVO> getmain() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CateVO> getmain() throws Exception {
+		return dao.selectmain();
 	}
 
-	
 }

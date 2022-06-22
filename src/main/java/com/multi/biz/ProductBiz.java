@@ -39,6 +39,9 @@ public class ProductBiz implements Biz<Integer, ProductVO> {
 		return dao.selectall();
 	}
 	
+	public List<ProductVO> selectproduct(int id) throws Exception {
+		return dao.selectproduct(id);
+	}
 	
 }
 

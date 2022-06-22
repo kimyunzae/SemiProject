@@ -1,24 +1,28 @@
-package com.multi.board;
+package com.multi.product;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.multi.biz.BoardBiz;
-import com.multi.vo.BoardVO;
+import com.multi.biz.ProductBiz;
+import com.multi.vo.ProductVO;
 
 @SpringBootTest
-class BoardUpdateTest {
-	
+class SelectProductTests {
+
 	@Autowired
-	BoardBiz biz;
+	ProductBiz biz;
 	
 	@Test
 	void contextLoads() {
-		BoardVO obj = new BoardVO(7,1005,"good5","id05","goooood");
+		List<ProductVO> list = null;
 		try {
-			biz.modify(obj);
-			System.out.println(obj);
+			list = biz.selectproduct(10);
+			for (ProductVO obj : list) {
+				System.out.println(obj);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

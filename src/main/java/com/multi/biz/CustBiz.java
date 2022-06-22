@@ -67,4 +67,8 @@ public class CustBiz implements Biz<String, CustVO> {
 		// aid는 0으로 나옵니다 0이면 따로 처리하는걸 코딩해야 함
 	}
 
+//	public CustVO getAdmin(String id) throws Exception {
+//		return dao.getUser(id);
+//	}
+
 }
