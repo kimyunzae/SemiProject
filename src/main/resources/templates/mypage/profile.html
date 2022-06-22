@@ -32,8 +32,8 @@
 				class="d-flex flex-column align-items-center text-center p-3 py-5">
 				<img class="rounded-circle mt-5" width="150px"
 					src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-				<span th:text="${session.logincust.name}" class="font-weight-bold">Edogaru</span><span
-					th:text="${session.logincust.email}" class="text-black-50">edogaru@mail.com.my</span><span>
+				<span th:text="${vo.name}" class="font-weight-bold">Edogaru</span><span
+					th:text="${vo.email}" class="text-black-50">edogaru@mail.com.my</span><span>
 				</span>
 			</div>
 		</div>
@@ -45,40 +45,38 @@
 				<div class="row mt-2">
 					<div class="col-md-12">
 						<label class="labels">Name</label><input type="text"
-							class="form-control" th:placeholder="${session.logincust.name}"
+							class="form-control" th:placeholder="${vo.name}"
 							value="">
 					</div>
 
 				</div>
 				<div class="row mt-3">
-					<div class="col-md-12">
-						<label class="labels">Email ID</label><input type="text"
-							class="form-control" th:placeholder="${session.logincust.email}"
-							value="">
-					</div>
-					<div class="col-md-12">
-						<label class="labels">Mobile Number</label><input type="text"
-							class="form-control" th:placeholder="${session.logincust.phone}"
-							value="">
-					</div>
-					<div class="col-md-12">
-						<label class="labels">Address</label> <select class="form-select"
-							aria-label="Default select example">
-							<option th:each="a:${addrlist}"
-								th:if="${a.uid == session.logincust.uid}" th:text="${a.addr}">
-							</option>
-						</select>
-					</div>
+					<form id="editprofile">
+						<div class="col-md-12">
+							<label class="labels">Email ID</label><input type="text"
+								class="form-control" th:placeholder="${vo.email}"
+								value="">
+						</div>
+						<div class="col-md-12">
+							<label class="labels">Mobile Number</label><input type="text"
+								class="form-control" th:placeholder="${vo.phone}"
+								value="">
+						</div>
+						<div class="col-md-12">
+							<label class="labels">Address</label>
+							<select class="form-select"	aria-label="Default select example">
+								<option th:each="v:${aidsoncust}" th:text="${v.addr}" th:value="${v.aid}" th:selected="${vo.def_ship_addr} eq ${v.aid}"></option>
+							</select>
+						</div>
+					</form>
 				</div>
 
 				<div class="mt-5 text-center">
 					<button class="btn btn-primary profile-button" type="button">
-					Edit Profile
-					</button>
+						Edit Profile</button>
 
 					<button class="btn btn-primary profile-button m-1" type="button">
-					Save
-					</button>
+						Save</button>
 				</div>
 
 
@@ -93,7 +91,7 @@
 <!--  <div class="cta-inner bg-faded text-center rounded">
 	<h2 class="section-heading mb-5">
 		<span class="section-heading-upper">Come On In</span> 
-		<span class="section-heading-lower" th:text="${session.logincust.name} + ' 님' ">My page</span>
+		<span class="section-heading-lower" th:text="${vo.name} + ' 님' ">My page</span>
 	</h2>
 
 	<p class="address mb-5">
