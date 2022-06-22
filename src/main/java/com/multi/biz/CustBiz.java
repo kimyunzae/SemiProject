@@ -1,7 +1,7 @@
 package com.multi.biz;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,19 +47,17 @@ public class CustBiz implements Biz<String, CustVO> {
 	public void modifyDefShipAddr(CustVO v) throws Exception {
 		// custvo에서 id를 가져오고, custvo에서 수정할 값을 가져온다
 		// addrlist에서는 목록을 찾는다
-		if (v.getDef_ship_addr() == 0) {
+		int applyingAid = v.getDef_ship_addr(); 
+		if (applyingAid == 0) {
 			dao.updateDefShipAddr(v);
 		} else {
 			List<AddrlistVO> addrlist = null;
-			try {
-				addrlist = adao.selectpercust(v.getUid());
-				for (AddrlistVO obj : addrlist) {
-					if (obj.getAid() == v.getDef_ship_addr()) {
-						dao.updateDefShipAddr(v);
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			addrlist = adao.selectpercust(v.getUid());
+			Optional addrvo = addrlist.stream().filter(obj -> obj.getAid() == applyingAid).findAny();
+			if (addrvo.isPresent() == true) {
+				dao.updateDefShipAddr(v);
+			} else {
+			    throw new Exception("유저가 선택할 수 있는 주소 목록 중에 없습니다");
 			}
 		}
 	}
