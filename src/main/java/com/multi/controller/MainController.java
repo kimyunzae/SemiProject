@@ -27,12 +27,6 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping("/products")
-	public String products(Model m) {
-		m.addAttribute("center", "products");
-		return "index";
-	}
-
 	@RequestMapping("/store")
 	public String store(Model m) {
 		m.addAttribute("center", "store");

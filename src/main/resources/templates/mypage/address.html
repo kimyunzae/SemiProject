@@ -41,15 +41,17 @@
 				<thead class="thead">
 					<tr>
 						<td>No.</td>
+						<td>Account</td>
 						<td>Receiver</td>
 						<td>Adresss</td>
 					</tr>
 				</thead>
 				<tbody class="tbody">
-					<tr>
-						<td>1</td>
-						<td>마작두</td>
-						<td>창원</td>
+					<tr th:each="a:${addrlist}" th:if="${a.uid == session.logincust.uid}">
+						<td th:text="${a.aid}">1</td>
+						<td th:text="${a.uid}">1</td>
+						<td th:text="${a.receivename}">마작두</td>
+						<td th:text="${a.addr}">창원</td>
 					</tr>
 				</tbody>
 			</table>

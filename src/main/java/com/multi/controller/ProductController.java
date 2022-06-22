@@ -16,25 +16,43 @@ import com.multi.vo.ProductVO;
 public class ProductController {
 
 	@Autowired
-	ProductBiz pbiz;
-	
-	@Autowired
 	CateBiz cabiz;
-	
 
-	@RequestMapping("/catelist")
-	public  List<CateVO> makemenu(Model m) {
+	@Autowired
+	ProductBiz pbiz;
+
+	@RequestMapping("/products")
+	public String products(Model m) {
 		List<CateVO> catelist = null;
+		List<ProductVO> plist = null;
+
 		try {
-			catelist = cabiz.getmain();
+			catelist = cabiz.get();
+			plist = pbiz.get();
+			m.addAttribute("center", "products");
+			m.addAttribute("catelist", catelist);
+			m.addAttribute("plist", plist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return catelist;
+		return "index";
 	}
-	
-	
-	
-	
+
+	@RequestMapping("getproduct")
+	public String getproduct(Model m, int id, String name) {
+		List<CateVO> catelist = null;
+		List<ProductVO> plist = null;
+		try {
+			catelist = cabiz.get();
+			plist = pbiz.selectproduct(id);
+			m.addAttribute("center", "products");
+			m.addAttribute("menu", name);
+			m.addAttribute("catelist", catelist);
+			m.addAttribute("plist", plist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
 
 }

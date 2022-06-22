@@ -2,7 +2,7 @@
 
 <style>
 .profile-section {
-	 background-color:  #f3d3ab;
+	background-color: #f3d3ab;
 }
 
 .form-control:focus {
@@ -62,20 +62,26 @@
 							value="">
 					</div>
 					<div class="col-md-12">
-						<label class="labels">Address</label>
-						<select class="form-select" aria-label="Default select example">
-							<option th:text="${session.logincust.addr}" selected></option>
-							<option th:text="${session.logincust.addr}" value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
-						</select> 
+						<label class="labels">Address</label> <select class="form-select"
+							aria-label="Default select example">
+							<option th:each="a:${addrlist}"
+								th:if="${a.uid == session.logincust.uid}" th:text="${a.addr}">
+							</option>
+						</select>
 					</div>
 				</div>
 
 				<div class="mt-5 text-center">
-					<button class="btn btn-primary profile-button" type="button">Edit
-						Profile</button>
+					<button class="btn btn-primary profile-button" type="button">
+					Edit Profile
+					</button>
+
+					<button class="btn btn-primary profile-button m-1" type="button">
+					Save
+					</button>
 				</div>
+
+
 			</div>
 		</div>
 

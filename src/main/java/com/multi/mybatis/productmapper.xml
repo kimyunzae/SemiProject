@@ -15,6 +15,13 @@
 		FROM product p
 		INNER JOIN cate c ON p.cid = c.cid
 	</select>
+	<select id="selectproduct" parameterType="int" resultType="productVO">
+		SELECT p.pid, p.pname, p.regdate, p.pimgname,
+		p.cid, p.pprice, c.cname as catename
+		FROM product p
+		INNER JOIN cate c ON p.cid = c.cid
+		WHERE p.cid = #{cid}
+	</select>
 	<insert id="insert" parameterType="productVO" useGeneratedKeys="true" keyProperty="pid">
 		INSERT INTO PRODUCT VALUES (NULL,#{pname},#{pprice},curdate(),#{cid},#{pimgname},#{pcontents})
 	</insert>
