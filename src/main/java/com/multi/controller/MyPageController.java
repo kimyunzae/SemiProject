@@ -33,8 +33,11 @@ public class MyPageController {
 	public String mypage(Model m, HttpSession session) {
 		m.addAttribute("center", "mypage/mypage");
 		CustVO vo = (CustVO) session.getAttribute("logincust");
+		String uid = vo.getUid();
 		try {
-			List<AddrlistVO> aidsoncust = abiz.getpercust(vo.getUid());
+			vo = biz.get(uid);
+			List<AddrlistVO> aidsoncust = abiz.getpercust(uid);
+			m.addAttribute("vo",vo);
 			m.addAttribute("aidsoncust",aidsoncust);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
