@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.AddrlistMapper">
 	
 	<select id="select" parameterType="int" resultType="addrlistVO">
-		SELECT * FROM addrlist WHERE AID=#{aid}
+		SELECT * FROM addrlist AID=#{aid}
 	</select>
 	<select id="selectall" resultType="addrlistVO">
 		SELECT * FROM addrlist

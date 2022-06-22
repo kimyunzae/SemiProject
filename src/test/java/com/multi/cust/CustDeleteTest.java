@@ -15,7 +15,7 @@ class CustDeleteTest {
 	@Test
 	void contextLoads() {
 		try {
-			biz.remove("id05");
+			biz.remove(null);
 			System.out.println("Delete OK");
 		} catch (Exception e) {
 			System.out.println("Delete FAIL");

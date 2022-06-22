@@ -13,15 +13,9 @@ import lombok.ToString;
 @ToString
 
 public class CateVO {
+	
 	private int cid;
 	private String cname;
-	private Integer parentcid;
-	
-	public CateVO(int cid, String cname) {
-		this.cid = cid;
-		this.cname = cname;
-	}
-
 
 }
 

@@ -10,21 +10,13 @@
 	</select>
 	
 	<insert id="insert" parameterType="cateVO">
-		<if	test="parentcid != 0"> 
-			INSERT INTO cate VALUES (#{cid},#{cname},#{parentcid})
-		</if>
-		<if	test="parentcid == 0"> 
-			INSERT INTO cate VALUES (#{cid},#{cname},NULL)
-		</if>
+			INSERT INTO cate VALUES (#{cid},#{cname})	
 	</insert>
+	
 	<update id="update" parameterType="cateVO">
-		<if	test="parentcid != 0"> 
-		 	UPDATE cate SET CNAME=#{cname},PARENTCID=#{parentcid} WHERE CID=#{cid}
-		</if>
-		<if	test="parentcid == 0"> 
 		 	UPDATE cate SET CNAME=#{cname} WHERE CID=#{cid}
-		</if>
 	</update>
+	
 	<delete id="delete" parameterType="int">
 		DELETE FROM cate WHERE CID=#{cid}
 	</delete>
