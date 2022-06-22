@@ -3,7 +3,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	text-align: center	
+	text-align: center
 }
 
 .form-holder .form-content {
@@ -33,6 +33,12 @@
 	text-align: left;
 	-webkit-transition: all 0.4s ease;
 	transition: all 0.4s ease;
+}
+
+@media ( max-width : 575.98px) {
+	.form-content .form-items {
+		min-width: 340px;
+	}
 }
 
 .form-content h3 {
