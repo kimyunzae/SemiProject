@@ -5,6 +5,10 @@
 	width: 100%;
 }
 
+label, .labels {
+	float: left;
+}
+
 .d-none {
 	display: none;
 }
@@ -27,7 +31,24 @@
 	border-bottom: 2px solid black;
 }
 </style>
-
+<script>
+	$(document).ready(function() {
+		$("#btn_edit_def_ship_addr").click(function() {
+			$("#select_def_ship_addr").attr({
+				"method" : "post",
+				"action" : "/defaddr_update"
+			});
+			$("#select_def_ship_addr").submit();
+		});
+		$("#btn_add_addr").click(function() {
+			$("#form_add_addr").attr({
+				"method" : "post",
+				"action" : "/add_addr"
+			});
+			$("#form_add_addr").submit();
+		});
+	});
+</script>
 
 <div class="cta-inner bg-faded text-center rounded">
 	<h2 class="section-heading mb-3">
@@ -40,21 +61,74 @@
 			<table class="table">
 				<thead class="thead">
 					<tr>
-						<td>No.</td>
-						<td>Account</td>
-						<td>Receiver</td>
-						<td>Adresss</td>
+						<td style="width: 100px">기본배송지</td>
+						<td style="width: 80px">No.</td>
+						<td style="width: 200px">Receiver</td>
+						<td>Address</td>
 					</tr>
 				</thead>
 				<tbody class="tbody">
-					<tr th:each="a:${addrlist}" th:if="${a.uid == session.logincust.uid}">
-						<td th:text="${a.aid}">1</td>
-						<td th:text="${a.uid}">1</td>
-						<td th:text="${a.receivename}">마작두</td>
-						<td th:text="${a.addr}">창원</td>
-					</tr>
+					<form id="select_def_ship_addr">
+						<input hidden name="uid" th:value="${vo.uid}">
+						<tr th:each="a:${addrlist}">
+							<td><div class="form-check addr_radio">
+									<input class="form-check-input" type="radio"
+										name="def_ship_addr" th:id="'addr_radio_'+${a.aid}"
+										th:value="${a.aid}" th:checked="${a.aid == vo.def_ship_addr}">
+								</div></td>
+							<td><label th:for="'addr_radio_'+${a.aid}"
+								th:text="${a.aid == 0} ? '회원정보' : ${a.aid}">1</label></td>
+							<td th:text="${a.receivename}">마작두</td>
+							<td th:text="${a.addr}">창원</td>
+						</tr>
+					</form>
 				</tbody>
 			</table>
-		</div>
+			<div class="text-center">
+				<button class="btn btn-primary" id="btn_edit_def_ship_addr"
+					type="button">Set Default Shipping Address</button>
+				<a href="#" class="btn btn-primary" id="open_add_addr" type="button"
+					data-bs-toggle="modal" data-bs-target="#modal_add_addr">Add
+					Address</a>
+			</div>
+			<div class="modal" id="modal_add_addr">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Add Shipping Address</h4>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						</div>
+						<!-- Modal body -->
+						<div>
+							<div class="modal-body">
+								<form id="form_add_addr">
+									<input hidden name="uid" th:value="${vo.uid}">
+									<div class="row mt-3">
+										<div class="col-md-12">
+											<label class="labels">Recipient Name</label><input type="text"
+												class="form-control"
+												name="receivename">
+										</div>
+
+										<div class="col-md-12">
+											<label class="labels">Address</label><input type="text"
+												class="form-control"
+												name="addr">
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger"
+									data-bs-dismiss="modal" id="btn_add_addr">Add</button>
+								<button type="button" class="btn btn-danger"
+									data-bs-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	</section>
 </div>
