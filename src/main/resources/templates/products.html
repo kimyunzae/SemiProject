@@ -1,5 +1,30 @@
 <meta charset="utf-8">
 <style>
+.card-box {
+	border: 1px solid #ddd;
+	padding: 20px;
+	box-shadow: 0px 0px 10px 0px #c5c5c5;
+	margin-bottom: 30px;
+	float: left;
+	border-radius: 10px;
+}
+
+.card-box .card-thumbnail {
+	max-height: 200px;
+	overflow: hidden;
+	border-radius: 10px;
+	transition: 1s;
+}
+
+.card-box .card-thumbnail:hover {
+	transform: scale(1.2);
+}
+
+.card-box h3 a {
+	font-size: 20px;
+	text-decoration: none;
+}
+
 .card {
 	background-color: #f3d3ab;
 }
@@ -9,7 +34,7 @@
 }
 
 .card-title {
-	border-bottom: 1px solid black;
+	
 }
 
 .product-price {
@@ -147,6 +172,15 @@
 											</div>
 										</div>
 									</div>
+								</div>
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger"
+										data-bs-dismiss="modal">
+										<i class="fas fa-shopping-bag"></i> Add
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-bs-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>

@@ -1,20 +1,37 @@
 package com.multi.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.biz.CateBiz;
 import com.multi.biz.CustBiz;
+import com.multi.biz.ProductBiz;
+import com.multi.frame.Util;
+import com.multi.vo.CateVO;
 import com.multi.vo.CustVO;
+import com.multi.vo.ProductVO;
 
 @Controller
 public class MainController {
 
 	@Autowired
 	CustBiz custbiz;
+
+	@Autowired
+	CateBiz cabiz;
+
+	@Autowired
+	ProductBiz pbiz;
+
+	@Value("${admindir}")
+	String admindir;
 
 	@RequestMapping("/index")
 	public String index(Model m) {
@@ -84,10 +101,72 @@ public class MainController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			
+
 			return "redirect:/login?msg=f";
 		}
 		return "index";
+	}
+
+	@RequestMapping("/admin")
+	public String admin(Model m) {
+		List<CateVO> list = null;
+		try {
+			list = cabiz.get();
+			m.addAttribute("center", "admin");
+			m.addAttribute("clist", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "index";
+	}
+
+	@RequestMapping("/addimpl")
+	public String addimpl(Model m, ProductVO p) {
+		String imgname = p.getMf().getOriginalFilename();
+		p.setPimgname(imgname);
+
+		try {
+			pbiz.register(p);
+			Util.saveFile(p.getMf(), admindir);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:products";
+	}
+
+	@RequestMapping("catecheckid")
+	public String catecheckid(String id) {
+
+		String result = "";
+		CateVO c = null;
+
+		if (id.equals("") || id == null) {
+			return "1";
+		}
+
+		try {
+			c = cabiz.get(Integer.parseInt(id));
+			if (c == null) {
+				result = "0";
+			} else {
+				result = "1";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+
+	@RequestMapping("/cateaddimpl")
+	public String cateaddimpl(Model m, CateVO c) {
+		try {
+			cabiz.register(c);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:products";
 	}
 
 }

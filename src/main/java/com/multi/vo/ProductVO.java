@@ -2,6 +2,8 @@ package com.multi.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class ProductVO {
 	private String pimgname; // 상품 이미지
 	private String pcontents; // 상품글의 내용
 	private String cname; // 카테고리명
+	private MultipartFile mf;
 	/* private Integer parentcid; // 상위 카테고리 아이디
 	 * private String parentcname; // 상위 카테고리명
 	 */

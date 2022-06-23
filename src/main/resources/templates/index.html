@@ -14,6 +14,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+  
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     </head>
@@ -40,14 +41,19 @@
                         <li th:if="${session.logincust == null}"class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login"><i class="fas fa-sign-out-alt"></i> Sign in</a></li>
                    		
                    		<li th:unless="${session.logincust == null}"class="nav-item px-lg-4">
-                   		<a class="nav-link" href="cart"><span  class="glyphicon glyphicon-cart">
+                   		<a class="nav-link text-uppercase" href="cart"><span  class="glyphicon glyphicon-cart">
                    		</span><i class="fas fa-shopping-bag"></i> Cart</a></li>
                    		<li th:unless="${session.logincust == null}"class="nav-item px-lg-4">
-                   		<a class="nav-link" href="/mypage">
+                   		<a class="nav-link text-uppercase" href="/mypage">
                    		<i class="fas fa-user-alt"></i> My Page</a></li>
                    		<li th:unless="${session.logincust == null}"class="nav-item px-lg-4">
-                   		<a class="nav-link" href="logout">
+                   		<a class="nav-link text-uppercase" href="logout">
                    		<i class="fas fa-sign-in-alt"></i> Sign Out</a></li>
+                   		
+                   		<li th:unless="${session.logincust == null}" class="nav-item px-lg-4">
+                   		<a class="nav-link text-uppercase" href="admin"><i class="fas fa-hammer">
+                   		</i> Admin</a></li>
+                   		
                    		
                    		
                     </ul>
