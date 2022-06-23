@@ -96,7 +96,6 @@
 	  sidebar.classList.toggle("active-nav");
 	  container.classList.toggle("active-cont");
 	});
-	
 </script>
 
 <section class="page-section cta">
@@ -115,7 +114,6 @@
 					</ul>
 				</div>
 			</div>
-
 			<div class="col-md-10">
 				<div class="cta-inner bg-faded text-center rounded pt-5 pb-5">
 					<h2 id="cate_name_products text-center" th:text="${menu}">Espresso</h2>
@@ -123,71 +121,58 @@
 						<div class="row">
 							<div class="card col-lg-3 col-sm-6" th:each="p:${plist}">
 								<img class="card-img-top mt-3"
-									src="assets/img/espresso/amaretto_flavoured_coffee_1.webp"
-									alt="Card image">
+									th:src="'assets/img/espresso/'+${p.pimgname}" alt="Card image">
 								<div class="card-body">
 									<h5 class="card-title pb-1" th:text="${p.pname}">Fair
 										Trade Espresso</h5>
 									<span class="product-price" th:text="${p.pprice}">₩20,000</span>
 									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" data-bs-target="#myModal"><i
+										data-bs-toggle="modal" th:data-bs-target="'#pmodal_'+${p.pid}"><i
 										class="fas fa-shopping-bag"></i></a>
 								</div>
-							</div>
-
-							<!-- 	<div class="col-4">
-								Bootstrap 5 card box
-								<div class="card-box" th:each="p:${plist}">
-									<div class="card-thumbnail">
-										<img
-											src="assets/img/espresso/amaretto_flavoured_coffee_1.webp"
-											class="img-fluid" alt="">
-									</div>
-									<h3>
-										<a href="#" class="mt-2 text-danger" th:text="${p.pname}"></a>
-									</h3>
-									<p class="text-secondary" th:text="${p.pprice}"></p>
-									<a href="#" class="btn btn-sm btn-danger float-right"
-										data-bs-toggle="modal" data-bs-target="#myModal">> <i
-										class="fas fa-shopping-bag"></i></a>
-								</div>
-							</div> -->
-
-
-						</div>
-					</div>
-				</div>
-
-
-
-				<div class="modal" id="myModal">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<!-- Modal Header -->
-							<div class="modal-header">
-								<h4 class="modal-title">Product Information</h4>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-							</div>
-							<!-- Modal body -->
-							<div th:each="p:${plist}">
-								<div class="modal-body">
-									<div>
-										<img src="assets/img/espresso/FairTrade.png"
-											alt="Image Description" style="float: left">
-									</div>
-									<div style="vertical-align: bottom; text-align: left">
-										<span th:text="${p.pname}" class="d-block"
-											style="font-size: 2rem">coffee</span> <span class="d-block"
-											style="font-size: 1.5rem">2022-20-22</span> <span
-											class="d-block" style="font-size: 0.9rem">Ei! wie
-											schmeckt der Coffee süße, Lieblicher als tausend Küsse,
-											Milder als Muskatenwein. Coffee, Coffee muss ich haben</span>
-									</div>
-									<div class=”prices”>
-										<div class=”amount”>
-											<h3 style="vertical-align: bottom; text-align: right">
-												<b>$2.99</b>
-											</h3>
+								<div class="modal" th:id="'pmodal_'+${p.pid}">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Product Information</h4>
+												<button type="button" class="btn-close"
+													data-bs-dismiss="modal"></button>
+											</div>
+											<!-- Modal body -->
+											<div>
+												<div class="modal-body">
+													<div>
+														<img th:src="'assets/img/espresso/'+${p.pimgname}"
+															alt="Image Description" style="float: left">
+													</div>
+													<div style="vertical-align: bottom; text-align: left">
+														<span th:text="${p.pname}" class="d-block"
+															style="font-size: 2rem">coffee</span> <span
+															class="d-block" style="font-size: 1.5rem">2022-20-22</span>
+														<span class="d-block" style="font-size: 0.9rem">Ei!
+															wie schmeckt der Coffee süße, Lieblicher als tausend
+															Küsse, Milder als Muskatenwein. Coffee, Coffee muss ich
+															haben</span>
+													</div>
+													<div class="prices">
+														<div class="amount">
+															<h3 style="vertical-align: bottom; text-align: right">
+																<b th:text="'₩'+${p.pprice}">$2.99</b>
+															</h3>
+														</div>
+													</div>
+												</div>
+												<!-- Modal footer -->
+												<div class="modal-footer">
+													<button type="button" class="btn btn-danger"
+														data-bs-dismiss="modal">
+														<i class="fas fa-shopping-bag"></i> Add
+													</button>
+													<button type="button" class="btn btn-danger"
+														data-bs-dismiss="modal">Close</button>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -208,4 +193,3 @@
 		</div>
 	</div>
 </section>
-

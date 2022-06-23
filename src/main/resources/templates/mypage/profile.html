@@ -1,5 +1,4 @@
 <meta charset="utf-8">
-
 <style>
 .profile-section {
 	background-color: #f3d3ab;
@@ -25,6 +24,32 @@
 	font-size: 11px
 }
 </style>
+<script>
+	$(document).ready(function() {
+		$("#btn_editprofile").click(function() {
+			$(this).hide();
+			$("#btn_saveprofile").show();
+			$(".profile-input-text").attr({
+				"disabled" : false
+			});
+			$(".profile-input-text").removeClass("form-control-plaintext");
+			$(".profile-input-text").addClass("form-control");
+			$(".profile-input-select").attr({
+				"disabled" : false
+			});
+			$(".profile-input-select").removeClass("form-control-plaintext");
+			$(".profile-input-select").addClass("form-select");
+		});
+
+		$("#btn_saveprofile").click(function() {
+			$("#form_editprofile").attr({
+				"method" : "post",
+				"action" : "/profile_update"
+			});
+			$("#form_editprofile").submit();
+		});
+	});
+</script>
 <div class="container rounded cta-inner profile-section">
 	<div class="row">
 		<div class="col-md-4 border-right">
@@ -32,8 +57,8 @@
 				class="d-flex flex-column align-items-center text-center p-3 py-5">
 				<img class="rounded-circle mt-5" width="150px"
 					src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-				<span th:text="${session.logincust.name}" class="font-weight-bold">Edogaru</span><span
-					th:text="${session.logincust.email}" class="text-black-50">edogaru@mail.com.my</span><span>
+				<span th:text="${vo.name}" class="font-weight-bold">Edogaru</span><span
+					th:text="${vo.uid}" class="text-black-50">id01</span><span>
 				</span>
 			</div>
 		</div>
@@ -42,50 +67,63 @@
 				<div class="d-flex justify-content-between align-items-center mb-3">
 					<h4 class="text-right">Profile</h4>
 				</div>
-				<div class="row mt-2">
-					<div class="col-md-12">
-						<label class="labels">Name</label><input type="text"
-							class="form-control" th:placeholder="${session.logincust.name}"
-							value="">
+				<form id="form_editprofile">
+					<input hidden name="uid" th:value="${vo.uid}">
+					<div class="row mt-2">
+						<div class="col-md-12">
+							<label class="labels">Name</label><input type="text"
+								class="form-control-plaintext profile-input-text" name="name"
+								th:value="${vo.name}" disabled>
+						</div>
 					</div>
-
-				</div>
-				<div class="row mt-3">
-					<div class="col-md-12">
-						<label class="labels">Email ID</label><input type="text"
-							class="form-control" th:placeholder="${session.logincust.email}"
-							value="">
-					</div>
-					<div class="col-md-12">
-						<label class="labels">Mobile Number</label><input type="text"
-							class="form-control" th:placeholder="${session.logincust.phone}"
-							value="">
-					</div>
-					<div class="col-md-12">
-						<label class="labels">Address</label> <select class="form-select"
-							aria-label="Default select example">
-							<option th:each="a:${addrlist}"
-								th:if="${a.uid == session.logincust.uid}" th:text="${a.addr}">
-							</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="mt-5 text-center">
-					<button class="btn btn-primary profile-button" type="button">
-					Edit Profile
-					</button>
-
-					<button class="btn btn-primary profile-button m-1" type="button">
-					Save
-					</button>
-				</div>
-
-
+					<div class="row mt-3">
+						<div class="col-md-12">
+							<label class="labels">Password</label><input type="password"
+								class="form-control-plaintext profile-input-text" name="pwd"
+								placeholder="••••••••" disabled>
+						</div>
+						<div class="col-md-12">
+							<label class="labels">Email ID</label><input type="text"
+								class="form-control-plaintext profile-input-text" name="email"
+								th:value="${vo.email}" disabled>
+						</div>
+						
+						<div class="col-md-12">
+							<label class="labels">Mobile Number</label><input type="text"
+								class="form-control-plaintext profile-input-text" name="phone"
+								th:value="${vo.phone}" disabled>
+						</div>
+						<div class="col-md-12">
+							<label class="labels">Address</label><input type="text"
+								class="form-control-plaintext profile-input-text" name="addr"
+								th:value="${vo.addr}" disabled>
+						</div>
+						<div class="col-md-12">
+							<label class="labels">Default Shipping Address</label> <select
+								class="form-control-plaintext profile-input-select"
+								aria-label="Default select example" name="def_ship_addr"
+								disabled>
+								<option th:each="v:${aidsoncust}" th:text="${v.addr}"
+									th:value="${v.aid}"
+									th:selected="${vo.def_ship_addr} eq ${v.aid}"></option>
+							</select>
+						</div>
+				</form>
 			</div>
-		</div>
 
+			<div class="mt-5 text-center">
+				<button class="btn btn-primary profile-button" id="btn_editprofile"
+					type="button">Edit Profile</button>
+
+				<button class="btn btn-primary profile-button"
+					id="btn_saveprofile" style="display: none;" type="button"> Save</button>
+			</div>
+
+
+		</div>
 	</div>
+
+</div>
 </div>
 
 
@@ -93,7 +131,7 @@
 <!--  <div class="cta-inner bg-faded text-center rounded">
 	<h2 class="section-heading mb-5">
 		<span class="section-heading-upper">Come On In</span> 
-		<span class="section-heading-lower" th:text="${session.logincust.name} + ' 님' ">My page</span>
+		<span class="section-heading-lower" th:text="${vo.name} + ' 님' ">My page</span>
 	</h2>
 
 	<p class="address mb-5">
