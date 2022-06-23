@@ -17,7 +17,6 @@ import com.multi.vo.AddrlistVO;
 import com.multi.vo.CustVO;
 import com.multi.vo.OrderdVO;
 
-
 @Controller
 public class MyPageController {
 
@@ -26,7 +25,7 @@ public class MyPageController {
 
 	@Autowired
 	AddrlistBiz abiz;
-	
+
 	@Autowired
 	OrderdBiz obiz;
 
@@ -38,8 +37,8 @@ public class MyPageController {
 		try {
 			vo = biz.get(uid);
 			List<AddrlistVO> aidsoncust = abiz.getpercust(uid);
-			m.addAttribute("vo",vo);
-			m.addAttribute("aidsoncust",aidsoncust);
+			m.addAttribute("vo", vo);
+			m.addAttribute("aidsoncust", aidsoncust);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,12 +57,38 @@ public class MyPageController {
 		}
 		return new RedirectView("/mypage");
 	}
+
+	@RequestMapping("/defaddr_update")
+	public RedirectView defaddr_update(Model m, CustVO vo) {
+		try {
+			biz.modifyDefShipAddr(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new RedirectView("/address");
+	}
 	
+	@RequestMapping("/add_addr")
+	public RedirectView add_addr(Model m, AddrlistVO vo) {
+		try {
+			abiz.register(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new RedirectView("/address");
+	}
+
 	@RequestMapping("/address")
-	public String address(Model m) {
+	public String address(Model m, HttpSession session) {
+		CustVO vo = (CustVO) session.getAttribute("logincust");
+		String uid = vo.getUid();
 		List<AddrlistVO> addrlist = null;
 		try {
-			addrlist = abiz.get();
+			vo = biz.get(uid);
+			addrlist = abiz.getpercust(uid);
+			m.addAttribute("vo", vo);
 			m.addAttribute("center", "mypage/mypage");
 			m.addAttribute("center2", "mypage/address");
 			m.addAttribute("addrlist", addrlist);
@@ -74,29 +99,27 @@ public class MyPageController {
 		return "index";
 	}
 
-	   @RequestMapping("/orders")
-	   public String orders(Model m) {
-	      List<OrderdVO> orderd = null;
-	      try {
-	         orderd = obiz.get();
-	         m.addAttribute("center", "mypage/mypage");
-	         m.addAttribute("center2", "mypage/orders");
-	         m.addAttribute("orderd",orderd);
-	      } catch (Exception e) {
-	      
-	         e.printStackTrace();
-	      }
-	      
-	      return "index";
-	   }
-	   
+	@RequestMapping("/orders")
+	public String orders(Model m) {
+		List<OrderdVO> orderd = null;
+		try {
+			orderd = obiz.get();
+			m.addAttribute("center", "mypage/mypage");
+			m.addAttribute("center2", "mypage/orders");
+			m.addAttribute("orderd", orderd);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return "index";
+	}
+
 	@RequestMapping("/activities")
 	public String activities(Model m) {
 		m.addAttribute("center", "mypage/mypage");
 		m.addAttribute("center2", "mypage/activities");
 		return "index";
 	}
-	
-	
 
 }
