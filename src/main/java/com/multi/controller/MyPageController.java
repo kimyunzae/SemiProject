@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.multi.biz.AddrlistBiz;
 import com.multi.biz.CustBiz;
@@ -47,6 +48,17 @@ public class MyPageController {
 		return "index";
 	}
 
+	@RequestMapping("/profile_update")
+	public RedirectView profile_update(Model m, CustVO vo) {
+		try {
+			biz.modify(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new RedirectView("/mypage");
+	}
+	
 	@RequestMapping("/address")
 	public String address(Model m) {
 		List<AddrlistVO> addrlist = null;
