@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.biz.CateBiz;
 import com.multi.biz.CustBiz;
+import com.multi.biz.OrderdBiz;
+import com.multi.biz.OrderdetailBiz;
 import com.multi.biz.ProductBiz;
-import com.multi.frame.Util;
-import com.multi.vo.CateVO;
 import com.multi.vo.CustVO;
-import com.multi.vo.ProductVO;
+import com.multi.vo.OrderdetailVO;
 
 @Controller
 public class MainController {
@@ -32,6 +32,12 @@ public class MainController {
 
 	@Value("${admindir}")
 	String admindir;
+
+	@Autowired
+	OrderdBiz obiz;
+	
+	@Autowired
+	OrderdetailBiz odbiz;
 
 	@RequestMapping("/index")
 	public String index(Model m) {
@@ -56,6 +62,21 @@ public class MainController {
 		return "index";
 	}
 
+	@RequestMapping("/order")
+	public String order(Model m) {
+		List<OrderdetailVO> odlist = null;
+		try {
+			odlist = odbiz.get();
+			m.addAttribute("center", "order");
+			m.addAttribute("odlist", odlist);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return "index";
+	}
+
 	@RequestMapping("/register")
 	public String register(Model m) {
 		m.addAttribute("center", "register");
@@ -65,8 +86,13 @@ public class MainController {
 	@RequestMapping("/registerimpl")
 	public String registerimpl(Model m, CustVO cust, HttpSession session) {
 		try {
+			if(cust != null) {
 			custbiz.register(cust);
 			session.setAttribute("logincust", cust);
+			}
+			else {
+				throw new Exception();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -90,6 +116,8 @@ public class MainController {
 	@RequestMapping("/loginimpl")
 	public String loginimpl(Model m, HttpSession session, String id, String pwd) {
 		CustVO cust = null;
+		// String loginfail = "Login Failed";
+		
 		try {
 			cust = custbiz.get(id);
 			if (cust == null) {
@@ -101,72 +129,10 @@ public class MainController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-
-			return "redirect:/login?msg=f";
+		//	m.addAttribute("loginfail", loginfail);
+			return "redirect:/login";
 		}
 		return "index";
-	}
-
-	@RequestMapping("/admin")
-	public String admin(Model m) {
-		List<CateVO> list = null;
-		try {
-			list = cabiz.get();
-			m.addAttribute("center", "admin");
-			m.addAttribute("clist", list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "index";
-	}
-
-	@RequestMapping("/addimpl")
-	public String addimpl(Model m, ProductVO p) {
-		String imgname = p.getMf().getOriginalFilename();
-		p.setPimgname(imgname);
-
-		try {
-			pbiz.register(p);
-			Util.saveFile(p.getMf(), admindir);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return "redirect:products";
-	}
-
-	@RequestMapping("catecheckid")
-	public String catecheckid(String id) {
-
-		String result = "";
-		CateVO c = null;
-
-		if (id.equals("") || id == null) {
-			return "1";
-		}
-
-		try {
-			c = cabiz.get(Integer.parseInt(id));
-			if (c == null) {
-				result = "0";
-			} else {
-				result = "1";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return result;
-	}
-
-	@RequestMapping("/cateaddimpl")
-	public String cateaddimpl(Model m, CateVO c) {
-		try {
-			cabiz.register(c);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:products";
 	}
 
 }

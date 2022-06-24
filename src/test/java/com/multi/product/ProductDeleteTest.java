@@ -17,7 +17,7 @@ class ProductDeleteTest {
 	@Test
 	void contextLoads() {
 		try {
-			biz.remove(11);
+			biz.remove(1024);
 			System.out.print("Delete OK");
 		} catch (Exception e) {
 			System.out.print("Delete FAIL");

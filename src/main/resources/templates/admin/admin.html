@@ -4,35 +4,7 @@
 </style>
 
 <script>
-	function sendId(id) {
-		$.ajax({
-			url : '/catecheckid',
-			data : {
-				'id' : id
-			},
-			success : function(data) {
-				if (data == '1') {
-					$('#sid').text('사용 불가능한 ID');
-				} else {
-					$('#sid').text('사용 가능한 ID');
-				}
-			}
-		});
-	};
-
 	$(document).ready(function() {
-		$('input[name="cid"]').blur(function() {
-			var id = $(this).val();
-			sendId(id);
-		});
-
-		$('#cateregisterbtn').click(function() {
-			$('.user').attr({
-				'method' : 'post',
-				'action' : 'cateaddimpl'
-			});
-			$('.user').submit();
-		});
 
 		$('#registerbtn').click(function() {
 			$('.user').attr({
@@ -85,30 +57,17 @@
 					</form>
 				</div>
 			</div>
+
 			<div class="col-lg-6 col-sm-12">
 				<div class="text-center">
-					<h1 class="h4 text-gray-900 mb-4">Category Register</h1>
+					<h1 class="h4 text-gray-900 mb-4">Product Update</h1>
 				</div>
 				<div class="cta-inner bg-faded rounded">
-					<form class="user">
-						<div class="form-group">
-							ID: <span id="sid"></span>
-							<input type="text"
-								class="form-control form-control-item" name="cid">
-						</div>
-						<div class="form-group">
-							NAME: <input type="text" class="form-control form-control-item"
-								name="cname">
-						</div>
-						
-						<div class="text-center mt-3">
-							<a id="cateregisterbtn" href="#"
-								class="btn btn-primary btn-user btn-block"> REGISTER </a>
-						</div>
-					</form>
+					<div class="text-center mt-3">
+						<a id="productlist" href="productlist"
+							class="btn btn-primary btn-user btn-block"> View Lists </a>
+					</div>
 				</div>
 			</div>
-
 		</div>
-	</div>
 </section>

@@ -5,9 +5,11 @@
 #iuid {
 	color: white
 }
+
 #iemail {
 	color: white
 }
+
 #iphone {
 	color: white
 }
@@ -48,44 +50,6 @@
 				}
 			});
 		});
-		$('#email').keyup(function() {
-				var inputemail = $(this).val();
-				$.ajax({
-					url : '/checkemail',
-					data : {
-						email : inputemail
-					},
-					success : function(result) {
-						if (result == '1') {
-							$('#iemail').text('사용중인 이메일입니다');
-							
-						} else {
-							$('#iemail').text('사용가능한 이메일입니다');
-				
-						}
-					}
-				});
-			});
-				$('#phone').keyup(function() {
-					var inputphone = $(this).val();
-					$.ajax({
-						url : '/checkphone',
-						data : {
-							phone : inputphone
-						},
-						success : function(result) {
-							if (result == '1') {
-								$('#iphone').text('등록불가한 폰번호입니다');
-						
-							} else {
-								$('#iphone').text('사용가능한 폰번호입니다');
-						
-							}
-						}
-					});
-				});
-					
-		
 
 		$('#register_bt').click(function() {
 
@@ -98,59 +62,64 @@
 
 	});
 </script>
-  <section class="page-section">
-	<div class="container">
-		<div class="form-body">
-			<div class="row">
-				<div class="form-holder">
-					<div class="form-content">
-						<div class="form-items">
-							<h3>Register Today</h3>
-							<p>Fill in the data below.</p>
 
-							<form id="register_form" class="requires-validation">
-								<div class="col-md-12">
-									<input id="uid" class="form-control" type="text" name="uid"
-										placeholder="ID" required for="uid">
-									<h5 id="iuid"></h5>
-								</div>
-
-								<div class="col-md-12">
-									<input id="pwd" class="form-control" type="password" name="pwd"
-										placeholder="Password" required>
-
-								</div>
-
-								<div class="col-md-12">
-									<input id="name" class="form-control" type="text" name="name"
-										placeholder="Full Name" required>
-								</div>
-
-								<div class="col-md-12">
-									<input id="addr" class="form-control" type="text" name="addr"
-										placeholder="Address" required>
-								</div>
-								<div class="col-md-12">
-									<input id="email" class="form-control" type="email"
-										name="email" placeholder="Email" required for="email">
-									<h5 id="iemail"></h5>
-								</div>
-								<div class="col-md-12">
-									<input id="phone" class="form-control" type="text" name="phone"
-										placeholder="Phone-number" required for="phone">
-									<h5 id="iphone"></h5>
-								</div>
-
-								<div class="form-button mt-3">
-									<button id="register_bt" type="submit" class="btn btn-primary">Register</button>
-								</div>
-
-							</form>
+<<section class="page-section">
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<div class="signup-form">
+				<form action="" id="register_form" class="border p-4 bg-light shadow">
+					<h4 class="mb-5 text-secondary">Create Your Account</h4>
+					<div class="row">
+						<div class="mb-3 col-md-6">
+							<label>Full Name<span class="text-danger">*</span></label> <input
+								type="text" id="name" name="name" required class="form-control"
+								placeholder="Enter Full Name">
 						</div>
+
+						<div class="mb-3 col-md-6">
+							<label>Email<span id="iemail" class="text-danger">*</span></label> <input
+								type="email" class="form-control" id="email"
+								placeholder="Enter email" required name="email">
+						</div>
+
+						<div class="mb-3 col-md-6">
+							<label>ID<span 
+							class="text-danger">*</span>
+							<span id="iuid" class="text-dark" ></span></label> <input
+								id="uid" name="uid" required
+								type="text" class="form-control"
+								placeholder="Enter ID">
+						</div>
+
+						<div class="mb-3 col-md-6">
+							<label>Password<span class="text-danger">*</span></label> <input
+								id="pwd" type="password" name="pwd" class="form-control"
+								placeholder="Enter Password" required>
+						</div>
+
+						<div class="mb-3 col-md-12">
+							<label>Address<span class="text-danger">*</span></label> <input
+								type="text" name="addr" class="form-control"
+								placeholder="Enter Address" required>
+						</div>
+						<div class="mb-3 col-md-12">
+							<label>Phone<span id="iphone" class="text-danger">*</span></label> <input
+								type="text" id="phone" name="phone" class="form-control"
+								placeholder="Enter Phone #" required>
+						</div>
+
+						<div class="col-md-12">
+							<button id="register_bt" type="submit" class="btn btn-primary float-end">Signup Now</button>
+						</div>
+						<p class="text-center mt-3 text-secondary">
+							If you have account, Please <a href="login">Login Now</a>
+						</p>
 					</div>
-				</div>
+				</form>
+
 			</div>
 		</div>
-
 	</div>
+</div>
 </section>

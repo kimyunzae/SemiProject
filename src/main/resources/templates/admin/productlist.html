@@ -1,0 +1,46 @@
+<meta charset="utf-8">
+<style>
+	td > img {
+		width: 50px;
+	}
+</style>
+
+<!-- Page Heading -->
+<h1 class="h3 m-3 text-center text-light"> Product Tables</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+   
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>PRICE</th>
+                        <th>REGDATE</th>
+                        <th>CATEGORY</th>
+                        <th>IMG</th>
+                    </tr>
+                </thead>
+               
+                <tbody>
+                    <tr th:each="p:${plist}">
+                        <td><a href="" 
+                        th:href="@{detail(id=${p.pid})}"
+                        th:text="${p.pid}" >ID</a></td>
+                        <td th:text="${p.pname}">NAME</td>
+                        <td th:text="${p.pprice}">PRICE</td>
+                        <td th:text="${#dates.format(p.regdate,'yyyy/MM/dd')}">REGDATE</td>
+                        <td th:text="${p.cid}">CATEGORY</td>
+                        <td>
+                        	<img th:src="@{'/assets/img/products/'+${p.pimgname}}">
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

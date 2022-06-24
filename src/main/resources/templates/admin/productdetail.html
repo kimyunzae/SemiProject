@@ -1,0 +1,77 @@
+<script>
+	$(document).ready(function() {
+		$('#updatebtn').click(function() {
+			$('.user').attr({
+				'enctype' : 'multipart/form-data',
+				'method' : 'post',
+				'action' : 'update'
+			});
+			$('.user').submit();
+		});
+	});
+</script>
+
+<style>
+.form-group>img {
+	width: 200px;
+}
+
+#deletebtn {
+	margin-left: 1em;
+}
+
+</style>
+
+<div class="col-lg-6">
+	<div class="p-5">
+		<div class="text-center">
+			<h1 class="h4 text-light mb-4">Product Information</h1>
+		</div>
+
+		<form class="user">
+			<div class="form-group">
+				<img th:src="@{'/assets/img/products/'+${dp.pimgname}}"> <input
+					type="hidden" name="imgname" th:value="${dp.pimgname}">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control form-control-item" name="pid"
+					value="id01" th:value="${dp.pid}" readonly="readonly">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control form-control-item"
+					name="pname" value="pwd01" th:value="${dp.pname}">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control form-control-item"
+					name="pprice" value="number" th:value="${dp.pprice}">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control form-control-item"
+					name="regdate" value="number"
+					th:value="${#dates.format(dp.regdate,'yyyy/MM/dd')}">
+			</div>
+			<div class="form-group">
+				<select name="cid" class="form-control form-control-item">
+					<option th:each="c:${clist}" th:value="${c.cid}"
+						th:text="${c.cname}" th:selected="${c.cid} == ${dp.cid}">
+					</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="file" class="form-control form-control-item" name="mf">
+			</div>
+
+			<div class="text-center mt-3">
+				<a id="updatebtn" href="#"
+					class="btn btn-primary btn-user btn-block"> UPDATE </a>
+				<a id="deletebtn" th:href="@{deleteimpl(id=${dp.pid})}"
+				class="btn btn-primary btn-user btn-block">
+					DELETE </a>
+					
+			</div>
+
+
+		</form>
+
+	</div>
+</div>

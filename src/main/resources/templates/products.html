@@ -10,7 +10,6 @@
 }
 
 .card-box .card-thumbnail {
-	max-height: 200px;
 	overflow: hidden;
 	border-radius: 10px;
 	transition: 1s;
@@ -33,8 +32,8 @@
 	text-decoration: none;
 }
 
-.card-title {
-	
+.product-img {
+	width: 12em;
 }
 
 .product-price {
@@ -48,7 +47,7 @@
 .side-navbar {
 	width: 12em;
 	height: 100%;
-	/* position: fixed; */
+	position: sticky;
 	margin-left: -300px;
 	background-color: #100901;
 	transition: 0.5s;
@@ -83,8 +82,92 @@
 
 @media screen and (max-width:1200px) {
 	.side-nav-section {
-		display: none;
+		display: block;
 	}
+}
+
+.wrapper {
+	margin-top: 30px;
+}
+
+.card {
+	border: 1px solid #eee;
+	cursor: pointer;
+}
+
+.weight {
+	margin-top: -65px;
+	transition: all 0.5s;
+}
+
+.weight small {
+	color: black;
+}
+
+.buttons {
+	padding: 1em;
+	border-radius: 4px;
+	position: relative;
+	margin-top: 7px;
+	opacity: 0;
+	transition: all 0.8s;
+}
+
+.dot {
+	height: 14px;
+	width: 14px;
+	background-color: green;
+	border-radius: 50%;
+	position: absolute;
+	left: 27%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 8px;
+	color: #fff;
+	opacity: 0;
+}
+
+.cart-button {
+	height: 48px
+}
+
+.cart-button:focus {
+	box-shadow: none
+}
+
+.cart {
+	position: relative;
+	height: 48px !important;
+	width: 50px;
+	margin-right: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	padding: 11px;
+	border-radius: 5px;
+	font-size: 14px;
+	transition: 1s ease-in-out;
+	overflow: hidden;
+}
+
+.cart-button.clicked span.dot {
+	animation: item 0.3s ease-in forwards
+}
+
+.card:hover .buttons {
+	opacity: 1;
+}
+
+.card:hover .weight {
+	margin-top: 10px;
+}
+
+.card:hover {
+	transform: scale(1.04);
+	z-index: 2;
+	overflow: hidden;
 }
 </style>
 
@@ -96,6 +179,8 @@
 	  sidebar.classList.toggle("active-nav");
 	  container.classList.toggle("active-cont");
 	});
+	
+
 </script>
 
 <section class="page-section cta">
@@ -117,73 +202,72 @@
 			<div class="col-md-10">
 				<div class="cta-inner bg-faded text-center rounded pt-5 pb-5">
 					<h2 id="cate_name_products text-center" th:text="${menu}">Espresso</h2>
-					<div class="container">
-						<div class="row">
-							<div class="card col-lg-3 col-sm-6" th:each="p:${plist}">
-								<img class="card-img-top mt-3"
-									th:src="'assets/img/espresso/'+${p.pimgname}" alt="Card image">
-								<div class="card-body">
-									<h5 class="card-title pb-1" th:text="${p.pname}">Fair
-										Trade Espresso</h5>
-									<span class="product-price" th:text="${p.pprice}">₩20,000</span>
-									<a href="#" class="btn btn-primary" type="button"
-										data-bs-toggle="modal" th:data-bs-target="'#pmodal_'+${p.pid}"><i
-										class="fas fa-shopping-bag"></i></a>
-								</div>
-								<div class="modal" th:id="'pmodal_'+${p.pid}">
-									<div class="modal-dialog modal-lg">
-										<div class="modal-content">
-											<!-- Modal Header -->
-											<div class="modal-header">
-												<h4 class="modal-title">Product Information</h4>
-												<button type="button" class="btn-close"
-													data-bs-dismiss="modal"></button>
+					<div class="wrapper">
+						<div class="container">
+							<div class="row g-1">
+								<div class="col-md-3" th:each="p:${plist}">
+									<div class="card p-3">
+										<div class="text-center">
+											<img class="product-img"
+												th:src="'assets/img/products/'+${p.pimgname}">
+										</div>
+										<div class="product-details">
+											<span th:text="'₩' + ${p.pprice}"
+												class="font-weight-bold d-block">$ 7.00</span> <span
+												th:text=${p.pname}>Red Redish</span>
+											<div class="buttons flex-row">
+												<button type="button" class="btn btn-primary"
+													th:data-bs-target="'#pmodal_'+${p.pid}"
+													data-bs-toggle="modal">Add to Bag</button>
 											</div>
-											<!-- Modal body -->
-											<div>
-												<div class="modal-body">
-													<div>
-														<img th:src="'assets/img/espresso/'+${p.pimgname}"
-															alt="Image Description" style="float: left">
-													</div>
-													<div style="vertical-align: bottom; text-align: left">
-														<span th:text="${p.pname}" class="d-block"
-															style="font-size: 2rem">coffee</span> <span
-															class="d-block" style="font-size: 1.5rem">2022-20-22</span>
-														<span class="d-block" style="font-size: 0.9rem">Ei!
-															wie schmeckt der Coffee süße, Lieblicher als tausend
-															Küsse, Milder als Muskatenwein. Coffee, Coffee muss ich
-															haben</span>
-													</div>
-													<div class="prices">
-														<div class="amount">
-															<h3 style="vertical-align: bottom; text-align: right">
-																<b th:text="'₩'+${p.pprice}">$2.99</b>
-															</h3>
+											<div class="weight">
+												<small>454g</small>
+											</div>
+										</div>
+									</div>
+
+									<!-- The Modal -->
+									<div class="modal" th:id="'pmodal_'+${p.pid}" role="dialog">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content">
+
+												<!-- Modal Header -->
+												<div class="modal-header">
+													<h4 class="modal-title">Product Info</h4>
+													<button type="button" class="btn-close"
+														data-bs-dismiss="modal"></button>
+												</div>
+
+												<!-- Modal body -->
+												<div class="container">
+													<div class="row">
+														<img class="col-6" width="200"
+															th:src="@{'/assets/img/products/'+${p.pimgname}}">
+
+														<div class="col-6"
+															style="vertical-align: bottom; text-align: left">
+															<h4 th:text="${p.pname}">Modal</h4>
+															<span th:text="${p.pcontents}" class="d-block m-2"
+																style="font-size: 0.9rem">Ei! wie schmeckt der
+																Coffee süße, Lieblicher als tausend Küsse, Milder als
+																Muskatenwein. Coffee, Coffee muss ich haben</span>
+															<p th:text="'₩' + ${p.pprice}"></p>
 														</div>
 													</div>
 												</div>
+
 												<!-- Modal footer -->
 												<div class="modal-footer">
-													<button type="button" class="btn btn-danger"
-														data-bs-dismiss="modal">
-														<i class="fas fa-shopping-bag"></i> Add
-													</button>
+													<button type="button" class="btn btn-dark"
+														th:onclick="addcart([[${p.pid}]])">Add
+														to Bag</button>
+
 													<button type="button" class="btn btn-danger"
 														data-bs-dismiss="modal">Close</button>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<!-- Modal footer -->
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger"
-										data-bs-dismiss="modal">
-										<i class="fas fa-shopping-bag"></i> Add
-									</button>
-									<button type="button" class="btn btn-danger"
-										data-bs-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
@@ -193,3 +277,6 @@
 		</div>
 	</div>
 </section>
+
+
+

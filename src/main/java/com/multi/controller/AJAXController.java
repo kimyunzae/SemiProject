@@ -20,7 +20,6 @@ public class AJAXController {
 	@RequestMapping("checkuid")
 	public String checkuid(String uid) {
 		
-		
 		String result = "";
 		CustVO c = null;
 		
@@ -40,54 +39,11 @@ public class AJAXController {
 		}
 		return result;
 	}
-
-	@RequestMapping("checkemail")
-	public String checkemail(String email) {
-		
-		
-		String result = "";
-		CustVO c = null;
-		
-		if(email.equals("email")) {
-			return "1";
-		}
-		
-		try {
-			c = biz.get(email);
-			if(c == null) {
-				result = "0";
-			}else{
-				result = "1";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
 	
-	@RequestMapping("checkphone")
-	public String checkphone(String phone) {
-		
-		
-		String result = "";
-		CustVO c = null;
-		
-		if(phone.equals("phone")) {
-			return "1";
-		}
-		
-		try {
-			c = biz.get(phone);
-			if(c == null) {
-				result = "0";
-			}else{
-				result = "1";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
+
+	
+	
+	
 }
 
 
