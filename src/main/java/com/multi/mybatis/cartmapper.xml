@@ -5,11 +5,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="com.multi.mapper.CartMapper">
 	
 	<select id="select" parameterType="int" resultType="cartVO">
-		
 		SELECT * FROM cart WHERE CRID=#{crid}
 	</select>
 	<select id="selectall" resultType="cartVO">
-	
 		SELECT * FROM cart
 	</select>
 	<insert id="insert" parameterType="cartVO">

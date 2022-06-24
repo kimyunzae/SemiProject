@@ -1,5 +1,23 @@
 <meta charset="utf-8">
 <style>
+.priceandamount {
+	margin-top: 2em;
+	display: flex;
+	justify-content: center;
+}
+
+.priceandamount>h5 {
+	margin-right: 1em;
+}
+
+.custom-select {
+	height: 100%;
+}
+
+.modal-content {
+	background-color: rgba(230, 167, 86, 0.9);
+}
+
 .card-box {
 	border: 1px solid #ddd;
 	padding: 20px;
@@ -180,8 +198,19 @@
 	  container.classList.toggle("active-cont");
 	});
 	
+	/* $(document).ready(function() {
+	$('addbtn').click(function() {
+
+		$('#sel').attr({ 
+			'action' : 'addtobag',
+			'method' : 'post'
+		});
+		$('#sel').submit();
+	});
+}); */
 
 </script>
+
 
 <section class="page-section cta">
 	<div class="container">
@@ -215,11 +244,19 @@
 											<span th:text="'₩' + ${p.pprice}"
 												class="font-weight-bold d-block">$ 7.00</span> <span
 												th:text=${p.pname}>Red Redish</span>
-											<div class="buttons flex-row">
+											<div class="buttons">
+												<button type="button" class="btn btn-dark disabled"
+													th:if="${session.logincust == null}">Add to Cart</button>
+												<br> <a th:if="${session.logincust == null}"
+													href="login">click to sign in</a>
+													
 												<button type="button" class="btn btn-primary"
 													th:data-bs-target="'#pmodal_'+${p.pid}"
-													data-bs-toggle="modal">Add to Bag</button>
+													data-bs-toggle="modal"
+													th:unless="${session.logincust == null}">Add to
+													Bag</button>
 											</div>
+
 											<div class="weight">
 												<small>454g</small>
 											</div>
@@ -244,23 +281,36 @@
 														<img class="col-6" width="200"
 															th:src="@{'/assets/img/products/'+${p.pimgname}}">
 
-														<div class="col-6"
+														<div class="col-6 mt-5"
 															style="vertical-align: bottom; text-align: left">
 															<h4 th:text="${p.pname}">Modal</h4>
 															<span th:text="${p.pcontents}" class="d-block m-2"
 																style="font-size: 0.9rem">Ei! wie schmeckt der
 																Coffee süße, Lieblicher als tausend Küsse, Milder als
 																Muskatenwein. Coffee, Coffee muss ich haben</span>
-															<p th:text="'₩' + ${p.pprice}"></p>
+
+															<div class="priceandamount">
+																<h5 class="text-center" th:text="'₩' + ${p.pprice}"></h5>
+
+																<select class="custom-select">
+																	<option selected>-- Choose amount --</option>
+																	<option value="1">1</option>
+																	<option value="2">2</option>
+																	<option value="3">3</option>
+																</select>
+															</div>
 														</div>
 													</div>
 												</div>
 
 												<!-- Modal footer -->
 												<div class="modal-footer">
-													<button type="button" class="btn btn-dark"
-														th:onclick="addcart([[${p.pid}]])">Add
-														to Bag</button>
+													<a th:href="@{addtobag(uid=${session.logincust.uid},
+													pid=${p.pid})}"
+														type="button" id="addbtn" class="btn btn-dark">Add
+														to Bag</a>
+
+
 
 													<button type="button" class="btn btn-danger"
 														data-bs-dismiss="modal">Close</button>
