@@ -45,23 +45,10 @@ public class CustBiz implements Biz<String, CustVO> {
 		return dao.selectall();
 	}
 
-//	public void modifyDefShipAddr(CustVO v) throws Exception {
-//		// custvo에서 id를 가져오고, custvo에서 수정할 값을 가져온다
-//		// addrlist에서는 목록을 찾는다
-//		int applyingAid = v.getDef_ship_addr(); 
-//		if (applyingAid == 0) {
-//			dao.updateDefShipAddr(v);
-//		} else {
-//			List<AddrlistVO> addrlist = null;
-//			addrlist = adao.selectpercust(v.getUid());
-//			Optional addrvo = addrlist.stream().filter(obj -> obj.getAid() == applyingAid).findAny();
-//			if (addrvo.isPresent() == true) {
-//				dao.updateDefShipAddr(v);
-//			} else {
-//			    throw new Exception("유저가 선택할 수 있는 주소 목록 중에 없습니다");
-//			}
-//		}
-//	}
+	public void modifyDefShipAddr(CustVO v) throws Exception {
+		v = validateAddr(v);
+		dao.updateDefShipAddr(v);
+	}
 
 	public AddrlistVO getAsAddrlistVO(String k) throws Exception {
 		return dao.selectAsAddrlistVO(k);
@@ -71,9 +58,11 @@ public class CustBiz implements Biz<String, CustVO> {
 //	public CustVO getAdmin(String id) throws Exception {
 //		return dao.getUser(id);
 //	}
-	
+
 	public CustVO validateAddr(CustVO v) throws Exception {
-		Integer applyingAid = v.getDef_ship_addr(); 
+		// custvo에서 id를 가져오고, custvo에서 수정할 값을 가져온다
+		// addrlist에서는 목록을 찾는다
+		Integer applyingAid = v.getDef_ship_addr();
 		if (applyingAid == 0 || applyingAid.equals(null)) {
 			v.setDef_ship_addr(0);
 			return v;
@@ -84,7 +73,7 @@ public class CustBiz implements Biz<String, CustVO> {
 			if (addrvo.isPresent() == true) {
 				return v;
 			} else {
-			    throw new Exception("유저가 선택할 수 있는 주소 목록 중에 없습니다");
+				throw new Exception("유저가 선택할 수 있는 주소 목록 중에 없습니다");
 			}
 		}
 	}

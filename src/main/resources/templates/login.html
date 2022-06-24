@@ -59,6 +59,9 @@
 						<div class="form-items">
 							<h3>Sign In</h3>
 							<p>Fill in the data below.</p>
+							<th:block th:if="${msg} == f">
+							<p>아이디와 비밀번호를 확인하여 주십시오.</p>
+							</th:block>
 							<form id="login_form" class="requires-validation" novalidate>
 
 								<div class="col-md-12">

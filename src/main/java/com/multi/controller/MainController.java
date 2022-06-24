@@ -100,8 +100,9 @@ public class MainController {
 	}
 
 	@RequestMapping("/login")
-	public String login(Model m) {
+	public String login(Model m,String msg) {
 		m.addAttribute("center", "login");
+		m.addAttribute("msg",msg);
 		return "index";
 	}
 
