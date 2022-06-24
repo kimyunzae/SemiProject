@@ -132,7 +132,7 @@ public class MainController {
 			}
 		} catch (Exception e) {
 		//	m.addAttribute("loginfail", loginfail);
-			return "redirect:/login";
+			return "redirect:/login?msg=f";
 		}
 		return "index";
 	}
