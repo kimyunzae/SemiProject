@@ -1,22 +1,31 @@
 <meta charset="utf-8">
-
 <style>
 .buy {
 	text-decoration: none;
 }
+
 .total-amount {
 	margin-right: 5em;
 }
 </style>
-<script>
-	$('#buy_btn').click(function() {
-
-		/* 	$('#register_form').attr({
-		 'method':'post',
-		 'action':'/registerimpl' 
-		 });
-		 $('#register_form').submit(); */
-		alert("구매완료");
+<script th:inline="javascript">
+	$(document).ready(function() {
+		var cartlistlength = [[${#lists.size(cartlist)}]];
+		var sumprice = 0;
+		for (var i=0;i<cartlistlength;i++){
+			var cntprice = parseInt($('.cntprice').eq(i).text());
+			sumprice += cntprice;
+		}
+		$('#total-price').text(sumprice);
+		
+		$('#buy_btn').click(function() {
+			var uid = $('#uid').val();
+			var addr = $('#addr').text();
+			var receivename = $('#receivename').text();
+			var transaction = $('#transaction').val();
+			var url = '/addorder?addr=' + addr + '&receivename=' + receivename + '&transaction=' + transaction;
+			$(location).attr('href', url);
+		});
 	});
 </script>
 
@@ -51,11 +60,13 @@
 												<h6 th:text="${cr.pname}" class="text-muted"
 													readonly="readonly">Shirt</h6>
 												<h6 th:text="${cr.cnt}" class="text-black mb-0"
-													readonly="readonly">Cotton T-shirt</h6>
+													readonly="readonly">2</h6>
 											</div>
 
 											<div class="col-md-4">
-												<h6 th:text="'₩' + ${cr.pprice}" class="mb-0">€ 44.00</h6>
+												<h6 class="mb-0">
+													₩<span class="cntprice" th:text="${cr.cnt}*${cr.pprice}">39800</span>
+												</h6>
 											</div>
 
 										</div>
@@ -82,7 +93,9 @@
 									<hr class="my-4">
 
 									<div class="d-flex justify-content-between mb-4">
-										<h5 class="text-uppercase" th:text="${custlist.name} + ' 님'"></h5>      
+										<h5 class="text-uppercase">
+											<span th:text="${custvo.name}" id="receivename"></span> 님
+										</h5>
 
 										<!--   <h5>€ 132.00</h5> -->
 									</div>
@@ -92,13 +105,10 @@
 										<hr class="my-4">
 										<h5 class="text-uppercase mb-3">Address</h5>
 										<div class="form-outline">
-												<span class="form-control form-control-sm"
-												th:text="${custlist.addr}">Enter your
-													code</span>
-											</div>
-										<div class="mb-5">
-											
+											<span class="form-control form-control-sm"
+												th:text="${custvo.addr}" id="addr">Enter your code</span>
 										</div>
+										<div class="mb-5"></div>
 										<hr class="my-4">
 									</div>
 									<h5 class="text-uppercase mb-3">Transaction</h5>
@@ -106,11 +116,11 @@
 									<div class="mb-5">
 										<div class="form-group">
 											<label for="sel1">Select list:</label> <select
-												class="form-control-sm" id="sel1">
-												<option>CreditCard</option>
-												<option>Account Transfer</option>
-												<option>Kakao Pay</option>
-												<option>Toss Bank</option>
+												class="form-control-sm" id="transaction">
+												<option value="creditcard">CreditCard</option>
+												<option value="accounttransfer">Account Transfer</option>
+												<option value="kakaopay">Kakao Pay</option>
+												<option value="tosspay">Toss Bank</option>
 											</select>
 										</div>
 									</div>
@@ -119,24 +129,27 @@
 
 									<div class="d-flex justify-content-between mb-5">
 										<h5 class="text-uppercase">Total price</h5>
-										<h5>€ 137.00</h5>
+										<h5>
+											₩ <span id="total-price"></span>
+										</h5>
 									</div>
 
 
 
-									<button  id="buy_btn" type="button"
+									<button id="buy_btn" type="button"
 										class="btn btn-dark btn-block btn-lg d-flex 
-										justify-content-end" data-mdb-ripple-color="dark"	>
-										
-										<!-- th:href="@{addorder(uid=${custlist.uid},
+										justify-content-end"
+										data-mdb-ripple-color="dark">
+
+										<!-- th:href="@{addorder(uid=${custvo.uid},
 										totalprice=${cr.totalprice},
-										addr=${custlist.addr},receiver=${custlist.addr} 
+										addr=${custvo.addr},receiver=${custvo.addr} 
 										)}"
 										-->
-									
-										<a class="buy" 
-										th:href="@{orderok(id=${custlist.uid})}"
-										 href="orderok">Buy</a></button>
+										<input hidden th:value="${custvo.uid}" id="uid"></input> <a
+											class="buy"> Buy
+										</a>
+									</button>
 								</div>
 							</div>
 						</div>
