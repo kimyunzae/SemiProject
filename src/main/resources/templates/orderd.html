@@ -10,11 +10,6 @@
 </style>
 <script th:inline="javascript">
 	$(document).ready(function() {
-		$('#buy_btn').click(function() {
-			var url = '/addorder?uid=' + uid + '&addr=' + addr + '&receivename=' + receivename + '&transaction=' + transaction;
-			$(location).attr('href', url);
-		});
-		
 		var cartlistlength = [[${#lists.size(cartlist)}]];
 		var sumprice = 0;
 		for (var i=0;i<cartlistlength;i++){
@@ -22,6 +17,15 @@
 			sumprice += cntprice;
 		}
 		$('#total-price').text(sumprice);
+		
+		$('#buy_btn').click(function() {
+			var uid = $('#uid').val();
+			var addr = $('#addr').text();
+			var receivename = $('#receivename').text();
+			var transaction = $('#transaction').val();
+			var url = '/addorder?addr=' + addr + '&receivename=' + receivename + '&transaction=' + transaction;
+			$(location).attr('href', url);
+		});
 	});
 </script>
 
@@ -90,7 +94,7 @@
 
 									<div class="d-flex justify-content-between mb-4">
 										<h5 class="text-uppercase">
-											<span th:text="${custlist.name} id="receivename"></span> 님
+											<span th:text="${custvo.name}" id="receivename"></span> 님
 										</h5>
 
 										<!--   <h5>€ 132.00</h5> -->
@@ -102,7 +106,7 @@
 										<h5 class="text-uppercase mb-3">Address</h5>
 										<div class="form-outline">
 											<span class="form-control form-control-sm"
-												th:text="${custlist.addr}">Enter your code</span>
+												th:text="${custvo.addr}" id="addr">Enter your code</span>
 										</div>
 										<div class="mb-5"></div>
 										<hr class="my-4">
@@ -112,11 +116,11 @@
 									<div class="mb-5">
 										<div class="form-group">
 											<label for="sel1">Select list:</label> <select
-												class="form-control-sm" id="sel1">
-												<option>CreditCard</option>
-												<option>Account Transfer</option>
-												<option>Kakao Pay</option>
-												<option>Toss Bank</option>
+												class="form-control-sm" id="transaction">
+												<option value="creditcard">CreditCard</option>
+												<option value="accounttransfer">Account Transfer</option>
+												<option value="kakaopay">Kakao Pay</option>
+												<option value="tosspay">Toss Bank</option>
 											</select>
 										</div>
 									</div>
@@ -137,14 +141,14 @@
 										justify-content-end"
 										data-mdb-ripple-color="dark">
 
-										<!-- th:href="@{addorder(uid=${custlist.uid},
+										<!-- th:href="@{addorder(uid=${custvo.uid},
 										totalprice=${cr.totalprice},
-										addr=${custlist.addr},receiver=${custlist.addr} 
+										addr=${custvo.addr},receiver=${custvo.addr} 
 										)}"
 										-->
-
-										<a class="buy" th:href="@{orderok(id=${custlist.uid})}"
-											href="orderok">Buy</a>
+										<input hidden th:value="${custvo.uid}" id="uid"></input> <a
+											class="buy"> Buy
+										</a>
 									</button>
 								</div>
 							</div>
