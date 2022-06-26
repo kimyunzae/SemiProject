@@ -2,8 +2,6 @@ package com.multi.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,20 +28,18 @@ public class OrderdController {
 
 
 	@RequestMapping("/orderd")
-	public String orderd(Model m, HttpSession session) {
+	public String orderd(Model m, String id) {
 		
 		List<CartVO> cartlist = null;  	
-		CustVO vo = (CustVO) session.getAttribute("logincust");
-		String uid = vo.getUid();
+		CustVO custlist = null;
+		
 		try {
-			
-			cartlist = cbiz.selectp(uid);
-			vo = cubiz.get(uid);
+			cartlist = cbiz.selectp(id);
+			custlist = cubiz.get(id);
 
 			m.addAttribute("center", "orderd");
-		
 			m.addAttribute("cartlist", cartlist);   
-			m.addAttribute("vo", vo);    
+			m.addAttribute("custlist", custlist);    
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,5 +48,25 @@ public class OrderdController {
 
 		return "index";
 	}
+	
+	@RequestMapping("/addorder")
+	public String addorder(Model m, String uid, int totalprice,
+			String addr, String receiver, String transaction) {
+		transaction = "Credit Card";
+		OrderdVO obj = 
+				new OrderdVO(uid,
+						totalprice, addr, receiver, 
+						"pending", transaction); 
+		try {
+			orbiz.register(obj);
+			m.addAttribute("center", "orderok");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "index";
+	}
+
 	
 }

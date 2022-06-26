@@ -1,6 +1,6 @@
 package com.multi.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.servlet.http.HttpSession;
 
@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.multi.biz.AddrlistBiz;
+import com.multi.biz.BoardBiz;
 import com.multi.biz.CustBiz;
 import com.multi.biz.OrderdBiz;
 import com.multi.vo.AddrlistVO;
+import com.multi.vo.BoardVO;
 import com.multi.vo.CustVO;
 import com.multi.vo.OrderdVO;
 
@@ -28,6 +30,10 @@ public class MyPageController {
 
 	@Autowired
 	OrderdBiz obiz;
+	
+	@Autowired
+	BoardBiz bobiz;
+
 
 	@RequestMapping("/mypage")
 	public String mypage(Model m, HttpSession session) {
@@ -117,8 +123,15 @@ public class MyPageController {
 
 	@RequestMapping("/activities")
 	public String activities(Model m) {
-		m.addAttribute("center", "mypage/mypage");
-		m.addAttribute("center2", "mypage/activities");
+		List<BoardVO> board = null;
+		try {
+			board = bobiz.get();
+			m.addAttribute("center", "mypage/mypage");
+			m.addAttribute("center2", "mypage/activities");
+			m.addAttribute("board", board);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "index";
 	}
 
