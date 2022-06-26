@@ -38,7 +38,7 @@ public class CartBiz implements Biz<Integer, CartVO>{
 		return dao.selectall();
 	}
 	
-	public List<CartVO> selectp() throws Exception {
-		return dao.selectp();
+	public List<CartVO> selectp(String uid) throws Exception {
+		return dao.selectp(uid);
 	}
 }

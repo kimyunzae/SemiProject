@@ -16,6 +16,6 @@ public interface CartMapper {
 	public void delete(int obj) throws Exception;
 	public void update(CartVO obj) throws Exception;
 	public CartVO select(int obj) throws Exception;
-	public List<CartVO> selectp() throws Exception;
+	public List<CartVO> selectp(String uid) throws Exception;
 	public List<CartVO> selectall() throws Exception;
 }

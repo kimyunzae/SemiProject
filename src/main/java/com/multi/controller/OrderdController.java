@@ -37,7 +37,7 @@ public class OrderdController {
 		String uid = vo.getUid();
 		try {
 			
-			cartlist = cbiz.selectp();
+			cartlist = cbiz.selectp(uid);
 			vo = cubiz.get(uid);
 
 			m.addAttribute("center", "orderd");
