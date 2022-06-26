@@ -34,7 +34,7 @@ public class OrderdController {
 		CustVO custlist = null;
 		
 		try {
-			cartlist = cbiz.selectp();
+			cartlist = cbiz.selectp(id);
 			custlist = cubiz.get(id);
 
 			m.addAttribute("center", "orderd");
