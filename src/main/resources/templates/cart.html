@@ -195,12 +195,13 @@ hr {
 			}
 		})
 		
-		/*var cartlistlength = [[${#lists.size(cartlist)}]];
-		var sumPrice = 0;
+		var cartlistlength = [[${#lists.size(cartlist)}]];
+		var sumprice = 0;
 		for (var i=0;i<cartlistlength;i++){
-			var cntprice = $('.cntprice')[i].text();
-			alert(cntprice);
-		}	*/	
+			var cntprice = parseInt($('.cntprice').eq(i).text());
+			sumprice += cntprice;
+		}
+		$('#total-price').text(sumprice);
 	});
 	
 	function change_qty2(pm, crid) {
@@ -294,7 +295,7 @@ const form = {
 									<div class="Subtotal">Sub-Total</div>
 									<div class="items" id="total-items">2 items</div>
 								</div>
-								<div class="total-amount" id="total-price">$6.18</div>
+								<div class="total-amount">₩<span id="total-price"></span></div>
 							</div>
 							<a href="orderd" th:href="@{orderd(id=${session.logincust.uid})}"
 								class="button order-btn">Order</a>
