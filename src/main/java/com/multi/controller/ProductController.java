@@ -71,7 +71,7 @@ public class ProductController {
 			e.printStackTrace();
 		}
 
-		return "index";
+		return "redirect:products";
 	}
 
 	

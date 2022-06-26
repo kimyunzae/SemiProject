@@ -53,7 +53,7 @@ public class AdminController {
 				e.printStackTrace();
 			}
 
-			return "redirect:products";
+			return "redirect:admin";
 		}
 
 		

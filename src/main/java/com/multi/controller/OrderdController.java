@@ -52,6 +52,7 @@ public class OrderdController {
 	@RequestMapping("/addorder")
 	public String addorder(Model m, String uid, int totalprice,
 			String addr, String receiver, String transaction) {
+		transaction = "Credit Card";
 		OrderdVO obj = 
 				new OrderdVO(uid,
 						totalprice, addr, receiver, 
