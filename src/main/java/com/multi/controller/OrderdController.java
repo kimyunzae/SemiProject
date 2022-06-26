@@ -67,6 +67,48 @@ public class OrderdController {
 
 		return "index";
 	}
+	
+	@RequestMapping("/buy")
+	public String buy(Model m) {
+
+		
+		try {
+			
+			m.addAttribute("center", "orderok");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "index";
+	}
+	
+	
+	
+	@RequestMapping("/orderok")
+	public String orderok(Model m, String id) {
+		
+		List<CartVO> cartlist = null;  	
+		CustVO custlist = null;
+//		OrderdVO orderdlist = null;
+		
+		try {
+			cartlist = cbiz.selectp(id);
+			custlist = cubiz.get(id);
+//			orderdlist = orbiz.get(orid);
+
+			m.addAttribute("center", "orderok");
+			m.addAttribute("cartlist", cartlist);   
+			m.addAttribute("custlist", custlist);
+//			m.addAttribute("orderdlist",orderdlist);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
+		return "index";
+	}
 
 	
 }

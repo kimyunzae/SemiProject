@@ -1,6 +1,9 @@
 <meta charset="utf-8">
 
 <style>
+.buy {
+	text-decoration: none;
+}
 .total-amount {
 	margin-right: 5em;
 }
@@ -121,7 +124,7 @@
 
 
 
-									<button id="buy_btn" type="button"
+									<button  id="buy_btn" type="button"
 										class="btn btn-dark btn-block btn-lg d-flex 
 										justify-content-end" data-mdb-ripple-color="dark"	>
 										
@@ -131,7 +134,9 @@
 										)}"
 										-->
 									
-										Buy</button>
+										<a class="buy" 
+										th:href="@{orderok(id=${custlist.uid})}"
+										 href="orderok">Buy</a></button>
 								</div>
 							</div>
 						</div>
