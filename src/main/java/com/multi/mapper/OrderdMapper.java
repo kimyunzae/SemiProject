@@ -15,5 +15,8 @@ public interface OrderdMapper {
 	public void update(OrderdVO v) throws Exception;
 	public OrderdVO select(int k) throws Exception;
 	public List<OrderdVO> selectall() throws Exception;
+	public List<OrderdVO> selectod() throws Exception;	
+	public List<OrderdVO> selectpi() throws Exception;
 	public void updatetotalprice(int k) throws Exception;
+	
 }

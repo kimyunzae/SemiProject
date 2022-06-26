@@ -3,26 +3,41 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.multi.mapper.CartMapper">
-	
+
 	<select id="select" parameterType="int" resultType="cartVO">
-		SELECT * FROM cart WHERE CRID=#{crid}
+		SELECT * FROM
+		cart WHERE CRID=#{crid}
 	</select>
 	<select id="selectall" resultType="cartVO">
 		SELECT * FROM cart
 	</select>
+
+	<select id="selectp" resultType="cartVO">
+		SELECT cr.uid, cr.crid, p.pid,
+		p.pname, p.pprice, p.pimgname, cr.cnt, od.totalprice, od.addr,
+		od.receivename, od.status, od.transaction
+		FROM cart cr
+		LEFT JOIN product p on cr.pid = p.pid
+		LEFT JOIN orderd od on od.orid = cr.crid;
+	</select>
+
+
 	<insert id="insert" parameterType="cartVO">
-		INSERT INTO CART VALUES (#{crid},#{uid},#{pid},#{cnt})
+		INSERT INTO CART VALUES
+		(#{crid},#{uid},#{pid},#{cnt})
 	</insert>
+
 	<update id="update" parameterType="cartVO">
-		UPDATE CART SET CNT=#{cnt} WHERE CRID=#{crid}
+		UPDATE CART SET CNT=#{cnt}
+		WHERE CRID=#{crid}
 	</update>
+
 	<delete id="delete" parameterType="int">
-		DELETE FROM CART WHERE CRID=#{crid}
+		DELETE FROM CART WHERE
+		CRID=#{crid}
 	</delete>
-	
+
 </mapper>
-
-
 
 
 

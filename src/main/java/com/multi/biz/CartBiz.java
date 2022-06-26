@@ -37,5 +37,8 @@ public class CartBiz implements Biz<Integer, CartVO>{
 	public List<CartVO> get() throws Exception {
 		return dao.selectall();
 	}
-
+	
+	public List<CartVO> selectp() throws Exception {
+		return dao.selectp();
+	}
 }

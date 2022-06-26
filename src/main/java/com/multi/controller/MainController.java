@@ -56,26 +56,6 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping("/cart")
-	public String cart(Model m) {
-		m.addAttribute("center", "cart");
-		return "index";
-	}
-
-	@RequestMapping("/order")
-	public String order(Model m) {
-		List<OrderdetailVO> odlist = null;
-		try {
-			odlist = odbiz.get();
-			m.addAttribute("center", "order");
-			m.addAttribute("odlist", odlist);
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-		return "index";
-	}
 
 	@RequestMapping("/register")
 	public String register(Model m) {
@@ -125,8 +105,14 @@ public class MainController {
 			if (cust == null) {
 				throw new Exception();
 			}
+			
 			if (cust.getPwd().equals(pwd)) {
 				session.setAttribute("logincust", cust);
+				
+				if(cust.getUid().equals("id01")) {
+					session.setAttribute("loginadmin", cust);
+				}
+				
 			} else {
 				throw new Exception();
 			}

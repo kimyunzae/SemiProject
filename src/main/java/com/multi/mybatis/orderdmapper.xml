@@ -3,13 +3,23 @@
 <mapper namespace="com.multi.mapper.OrderdMapper">
 
 	<select id="select" parameterType="int" resultType="orderdVO">
-		SELECT * FROM ORDERD WHERE ORID=#{orid}
+		SELECT * FROM
+		ORDERD WHERE ORID=#{orid}
 	</select>
 	<select id="selectall" resultType="orderdVO">
 		SELECT * FROM ORDERD
 	</select>
-	<insert id="insert" parameterType="orderdVO" useGeneratedKeys="true" keyProperty="orid">
-		INSERT INTO ORDERD VALUES (NULL,#{uid},curdate(),#{totalprice},#{addr},#{receivename},#{status},#{transaction})
+
+	<select id="selectpi" resultType="orderdVO">
+		SELECT *
+		FROM orderd od
+		LEFT OUTER JOIN orderdetail ot on od.orid = ot.odid;
+	</select>
+
+	<insert id="insert" parameterType="orderdVO"
+		useGeneratedKeys="true" keyProperty="orid">
+		INSERT INTO ORDERD VALUES
+		(NULL,#{uid},curdate(),#{totalprice},#{addr},#{receivename},#{status},#{transaction})
 	</insert>
 	<update id="update" parameterType="orderdVO">
 		UPDATE ORDERD SET UID=#{uid}
@@ -32,20 +42,24 @@
 				,RECEIVENAME=#{receivename}
 			</otherwise>
 		</choose>
-			<choose>
+		<choose>
 			<when test="status == null or status.equals('')"></when>
 			<otherwise>
 				,STATUS=#{status}
 			</otherwise>
-		</choose> WHERE ORID=#{orid}
+		</choose>
+		WHERE ORID=#{orid}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE FROM ORDERD WHERE ORID=#{orid}
+		DELETE FROM ORDERD WHERE
+		ORID=#{orid}
 	</delete>
 	<update id="updatetotalprice" parameterType="int">
-		UPDATE ORDERD SET totalprice=(
-			SELECT sum(price*cnt) FROM ORDERDETAIL WHERE orid = #{orid}
-		) WHERE orid = #{orid}
+		UPDATE ORDERD SET
+		totalprice=(
+		SELECT sum(price*cnt) FROM ORDERDETAIL WHERE orid = #{orid}
+		) WHERE orid =
+		#{orid}
 	</update>
 
 </mapper>

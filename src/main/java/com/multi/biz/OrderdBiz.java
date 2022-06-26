@@ -41,5 +41,10 @@ public class OrderdBiz implements Biz<Integer,OrderdVO>{
 	public void sumTotalprice(int k) throws Exception {
 		dao.updatetotalprice(k);
 	}
-	
+	public List<OrderdVO> selectod() throws Exception {
+		return dao.selectod();
+	}
+	public List<OrderdVO> selectpi() throws Exception {
+		return dao.selectpi();
+	}
 }
