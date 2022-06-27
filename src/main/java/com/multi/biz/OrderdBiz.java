@@ -49,4 +49,6 @@ public class OrderdBiz implements Biz<Integer,OrderdVO>{
 	}
 
 	
+
+	
 }

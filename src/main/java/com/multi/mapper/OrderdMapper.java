@@ -18,6 +18,6 @@ public interface OrderdMapper {
 	public List<OrderdVO> selectod() throws Exception;	
 	public List<OrderdVO> selectpi() throws Exception;
 	public void updatetotalprice(int k) throws Exception;
-	public OrderdVO getuid(String id) throws Exception;
+	
 	
 }
