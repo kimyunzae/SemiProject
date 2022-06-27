@@ -120,7 +120,7 @@ public class MainController {
 		//	m.addAttribute("loginfail", loginfail);
 			return "redirect:/login?msg=f";
 		}
-		return "index";
+		return "redirect:/index";
 	}
 
 }
