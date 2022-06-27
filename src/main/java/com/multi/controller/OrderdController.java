@@ -106,11 +106,12 @@ public class OrderdController {
 			}
 			orbiz.modify(priceupdater);
 			m.addAttribute("center", "orderok");
+			session.setAttribute("orderokorid", orid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "index";
+		return "redirect:/orderok";
 	}
 
 	@RequestMapping("/buy")
@@ -128,20 +129,17 @@ public class OrderdController {
 	}
 
 	@RequestMapping("/orderok")
-	public String orderok(Model m) {
-		List<OrderdVO> orderd = null;
-
+	public String orderok(Model m, HttpSession session) {
+		OrderdVO orderd = null;
+		int orid = (int) session.getAttribute("orderokorid");
 		try {
-			orderd = orbiz.get();
-
+			orderd = orbiz.get(orid);
 			m.addAttribute("center", "orderok");
 			m.addAttribute("orderd", orderd);
-
+			session.removeAttribute("orderokid");
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
-
 		return "index";
 	}
 
