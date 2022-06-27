@@ -116,8 +116,7 @@ public class OrderdController {
 	@RequestMapping("/buy")
 	public String buy(Model m) {
 
-		try {
-
+		try {			
 			m.addAttribute("center", "orderok");
 
 		} catch (Exception e) {

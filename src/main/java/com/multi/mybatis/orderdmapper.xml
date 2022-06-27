@@ -61,5 +61,9 @@
 		) WHERE orid =
 		#{orid}
 	</update>
+	<select id="getuid" parameterType="String" resultType="orderdVO">
+		SELECT * FROM
+		ORDERD WHERE uid=#{uid}
+	</select>
 
 </mapper>

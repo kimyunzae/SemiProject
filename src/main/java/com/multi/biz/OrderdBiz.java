@@ -47,4 +47,6 @@ public class OrderdBiz implements Biz<Integer,OrderdVO>{
 	public List<OrderdVO> selectpi() throws Exception {
 		return dao.selectpi();
 	}
+
+	
 }
