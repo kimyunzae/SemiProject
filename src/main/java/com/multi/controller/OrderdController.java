@@ -93,12 +93,13 @@ public class OrderdController {
 				int pprice = pbiz.get(pid).getPprice();
 				totalprice += pprice * cnt;
 			}
-			// public OrderdVO(Integer orid, String uid, int totalprice, String addr, String receivename, String status)
+			// public OrderdVO(Integer orid, String uid, int totalprice, String addr, String
+			// receivename, String status)
 			OrderdVO priceupdater = new OrderdVO(orid, uid, totalprice, null, null, null);
 			if ((CartVO) session.getAttribute("onlyoneproduct") != null) {
 				session.removeAttribute("onlyoneproduct");
 			} else {
-				for(CartVO cart : cartlist) {
+				for (CartVO cart : cartlist) {
 					int cid = cart.getCrid();
 					cbiz.remove(cid);
 				}
@@ -127,21 +128,14 @@ public class OrderdController {
 	}
 
 	@RequestMapping("/orderok")
-	public String orderok(Model m, String id) {
-
-		List<CartVO> cartlist = null;
-		CustVO custlist = null;
-//		OrderdVO orderdlist = null;
+	public String orderok(Model m) {
+		List<OrderdVO> orderd = null;
 
 		try {
-			cartlist = cbiz.selectp(id);
-			custlist = cubiz.get(id);
-//			orderdlist = orbiz.get(orid);
+			orderd = orbiz.get();
 
 			m.addAttribute("center", "orderok");
-			m.addAttribute("cartlist", cartlist);
-			m.addAttribute("custlist", custlist);
-//			m.addAttribute("orderdlist",orderdlist);
+			m.addAttribute("orderd", orderd);
 
 		} catch (Exception e) {
 			e.printStackTrace();
