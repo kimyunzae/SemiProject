@@ -1,7 +1,6 @@
-<meta charset="utf-8">
+2<meta charset="utf-8">
 
 <style>
-
 .Cart-Main {
 	height: 90vh;
 	display: flex;
@@ -174,7 +173,6 @@ hr {
 .button {
 	margin-top: 2em;
 	width: 100%;
-	
 	border: none;
 	background: #100901;
 	border-radius: 20px;
@@ -185,26 +183,40 @@ hr {
 	color: rgba(230, 167, 86, 0.9);
 	text-decoration: none;
 	margin-left: 8em;
-
- 
 }
 </style>
-<script>
-$(document).ready(function(){
-	$('#deletebtn').click(function(){
-		var crid = $('input[name="crid"]').val();
-		var c = confirm('삭제 하시겠습니까?');
-		if(c == true){
-			location.href='delete?crid='+crid;
+<script th:inline="javascript">
+	$(document).ready(function() {
+		$('#deletebtn').click(function() {
+			var crid = $('input[name="crid"]').val();
+			var c = confirm('삭제 하시겠습니까?');
+			if (c == true) {
+				location.href = 'delete?crid=' + crid;
+			};
+		});
+		
+		var cartlistlength = [[${#lists.size(cartlist)}]];
+		var sumprice = 0;
+		for (var i=0;i<cartlistlength;i++){
+			var cntprice = parseInt($('.cntprice').eq(i).text());
+			sumprice += cntprice;
 		}
-	})
+		$('#total-price').text(sumprice);
 	});
 	
-$("#my_button").click(function() {
-  alert($("input[name=tag]").length);
-});
-</script>	
-	
+	function change_qty2(pm, crid) {
+		var crid = crid;
+		var cnt = $('#ct_qty' + crid).text();
+		if (pm == 'm' && cnt == '1') {
+			alert("최소 구매수량입니다.");
+			return;
+		}
+		var updateurl = '/cartupdate?crid=' + crid + '&pm=' + pm;
+		$(location).attr('href', updateurl);
+	}
+</script>
+
+
 
 <!-- 
 //수량 조작버튼
@@ -237,10 +249,10 @@ const form = {
 				<div class="Cart-Main">
 					<div class="CartContainer">
 						<div class="Header">
-							<h3 class="Heading">Shopping Bag</h3>
+							<h3 class="Heading">Shopping Cart</h3>
 							<!-- <h5 class="Action">Remove all</h5> -->
 						</div>
-			<!-- <input type='button' id='my_button' value='개수 세기' /> -->
+						<!-- <input type='button' id='my_button' value='개수 세기' /> -->
 						<div class="Cart-Items" th:each="cr : ${cartlist}" name="tag">
 							<div class="image-box">
 								<img th:src="'assets/img/espresso/'+${cr.pimgname}" style=""
@@ -256,17 +268,20 @@ const form = {
 							</div>
 
 							<div class="counter">
-								
-								<div class="btn">+</div>
-								<div class="count" th:text="${cr.cnt}">2</div>
-								<div class="btn">-</div>
+
+								<a class="btn"
+									th:href="|javascript:change_qty2('p',${cr.crid})|">+</a>
+								<div class="count" th:id="ct_qty+${cr.crid}" th:text="${cr.cnt}">2</div>
+								<a class="btn"
+									th:href="|javascript:change_qty2('m',${cr.crid})|">-</a>
 							</div>
 
-							<div class="prices">
-								<div class="amount" th:text="'₩' + ${cr.pprice}">$2.99</div>
+							<div class="prices" th:with="cntprice=${cr.cnt}*${cr.pprice}">
+								<div class="amount">₩<span class="cntprice" th:text="${cntprice}">39800</span></div>
 
 								<!-- remove 버튼 누르면 데이터 삭제 할 수 있게 -->
-								</a> <a id="deletebtn" href="cart" th:href="@{delete(crid=${cr.crid})}"
+								</a> <a id="deletebtn" href="cart"
+									th:href="@{delete(crid=${cr.crid})}"
 									class=" btn-primary btn-user btn-block"> Remove </a>
 							</div>
 						</div>
@@ -278,13 +293,12 @@ const form = {
 								<!-- sum함수 이용해서 cnt, totalprice구현 -->
 								<div>
 									<div class="Subtotal">Sub-Total</div>
-									<div class="items">2 items</div>
+									<div class="items" id="total-items">2 items</div>
 								</div>
-								<div class="total-amount">$6.18</div>
+								<div class="total-amount">₩<span id="total-price"></span></div>
 							</div>
 						
-							<a href="orderd" th:href="@{orderd(id=${session.logincust.uid})}"
-								class="button order-btn">Order</a>
+							<a href="/orderd" class="button order-btn">Order</a>
 						</div>
 					</div>
 
@@ -293,4 +307,3 @@ const form = {
 		</div>
 	</div>
 </section>
-

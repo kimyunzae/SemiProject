@@ -12,13 +12,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM cart
 	</select>
 
-	<select id="selectp" resultType="cartVO">
+	<select id="selectp" resultType="cartVO" parameterType="String">
 		SELECT cr.uid, cr.crid, p.pid,
-		p.pname, p.pprice, p.pimgname, cr.cnt, od.totalprice, od.addr,
-		od.receivename, od.status, od.transaction
+		p.pname, p.pprice, p.pimgname, cr.cnt
 		FROM cart cr
 		LEFT JOIN product p on cr.pid = p.pid
-		LEFT JOIN orderd od on od.orid = cr.crid;
+		WHERE cr.uid = #{uid}
 	</select>
 
 

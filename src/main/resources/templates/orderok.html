@@ -1,0 +1,64 @@
+<meta charset="utf-8">
+
+<style>
+.total-amount {
+	margin-right: 5em;
+}
+</style>
+
+<section class="h-100 h-custom">
+	<div class="container py-5 h-100">
+		<div
+			class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-12">
+				<div class="card card-registration card-registration-2 cta"
+					style="border-radius: 15px;">
+					<div class="card-body p-0">
+
+						<div class="cta-inner bg-faded text-center rounded">
+						
+							<h3>결제가 완료되었습니다.</h3>
+							<h2 class="section-heading mb-3">
+								<span class="section-heading-upper"
+									th:text="${session.logincust.name} + ' 님 주문내역'"></span>            
+							</h2>
+							<section class="main"> 
+								<h1 class="d-none">게시판</h1>
+								<div class="board">
+									<table class="table">
+										<thead class="thead">
+											<tr>
+												<td>No.</td>
+												<td>ID</td>
+												<td>Order Date</td>			
+												<td>TotalPrice</td>
+												<td>Address</td>
+												<td>Receiver</td>
+												<td>Transaction</td>
+												<td>Status</td>
+
+											</tr>
+										</thead>
+										<tbody class="tbody">
+											<tr th:each="o:${orderd}" th:if="${o.uid == session.logincust.uid}">
+												<td th:text="${o.orid}">No.</td>
+												<td th:text="${o.uid}">ID</td>
+												<td th:text="${o.ordate}">Order Date</td>
+												<td th:text="${o.totalprice}">TotalPrice</td>
+												<td th:text="${o.addr}">Address</td>
+												<td th:text="${o.receivename}">Receiver</td>
+												<td th:text="${o.transaction}">Transaction</td>
+												<td th:text="${o.status}">Status</td>
+
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,17 +1,55 @@
 <meta charset="utf-8">
+<style>
+.u-container-layout {
+	position: relative;
+	flex: 1;
+	max-width: 100%;
+	transition-duration: inherit;
+}
 
+.u-container-style {
+	background-color: transparent !important;
+}
+
+.u-valign-top {
+	justify-content: flex-start;
+}
+
+.u-text {
+	display: inline-block;
+	margin-top: 0;
+	margin-bottom: 0;
+	vertical-align: baseline;
+	white-space: normal;
+	text-align: inherit;
+}
+
+.u-text-default {
+	display: table;
+	align-self: flex-start;
+	width: -webkit-fit-content;
+	width: fit-content;
+	width: -moz-fit-content;
+}
+</style>
 <div class="cta-inner bg-faded text-center rounded">
 	<h2 class="section-heading mb-5">
-		<span class="section-heading-upper">Address On In</span> <span
-			class="section-heading-lower">My page</span>
+		<span class="section-heading-upper">Your Product Reviews</span> 
 	</h2>
-
-	<p class="address mb-5">
-		<em> <strong>1116 Orchard Street</strong> <br /> Golden Valley,
-			Minnesota
-		</em>
-	</p>
-	<p class="mb-0">
-		<small><em>Call Anytime</em></small> <br /> (317) 585-8468
-	</p>
+	<div th:each="b:${board}" th:if="${b.uid == session.logincust.uid}">
+		<div class="card" style="margin-bottom: 20px">
+			<div class="card-body">
+				<div
+					class="u-container-style u-list-item u-palette-2-light-2 u-repeater-item u-list-item-1">
+					<div class="u-container-layout u-valign-top">
+						<h6 class="u-text u-text-default" th:text="${b.title}">Sample
+							Headline</h6>
+						<p class="u-text text." th:text="${b.contents}">Sample text.
+							Click to select the text box. Click again or double click to
+							start editing the text.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

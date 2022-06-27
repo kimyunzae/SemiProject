@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.multi.biz.BoardBiz;
 import com.multi.biz.CartBiz;
 import com.multi.biz.CateBiz;
 import com.multi.biz.ProductBiz;
+import com.multi.vo.BoardVO;
 import com.multi.vo.CartVO;
 import com.multi.vo.CateVO;
 import com.multi.vo.ProductVO;
@@ -25,18 +27,25 @@ public class ProductController {
 	
 	@Autowired
 	CartBiz crbiz;
+	
+	@Autowired
+	BoardBiz bbiz;
 
 	@RequestMapping("/products")
 	public String products(Model m) {
 		List<CateVO> catelist = null;
 		List<ProductVO> plist = null;
-
+		List<BoardVO> board = null;
 		try {
 			catelist = cabiz.get();
 			plist = pbiz.get();
+			board = bbiz.get();	
+		
 			m.addAttribute("center", "products");
+			
 			m.addAttribute("catelist", catelist);
 			m.addAttribute("plist", plist);
+			m.addAttribute("board", board);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,18 +56,22 @@ public class ProductController {
 	public String getproduct(Model m, int id, String name) {
 		List<CateVO> catelist = null;
 		List<ProductVO> plist = null;
+	
 		try {
 			catelist = cabiz.get();
 			plist = pbiz.selectproduct(id);
+		
 			m.addAttribute("center", "products");
 			m.addAttribute("menu", name);
 			m.addAttribute("catelist", catelist);
 			m.addAttribute("plist", plist);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "index";
 	}
+		
 	
 	
 	@RequestMapping("/addtobag")
@@ -71,7 +84,7 @@ public class ProductController {
 			e.printStackTrace();
 		}
 
-		return "index";
+		return "redirect:products";
 	}
 
 	
