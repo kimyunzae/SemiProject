@@ -44,6 +44,9 @@ public class OrderdController {
 		List<CartVO> cartlist = null;
 		try {
 			CustVO custvo = (CustVO) session.getAttribute("logincust");
+			if (custvo == null) {
+				throw new NotLoggedInException();
+			}
 			String uid = custvo.getUid();
 			custvo = cubiz.get(uid);
 			if (ipid != null && icnt != null) {
@@ -59,6 +62,8 @@ public class OrderdController {
 			m.addAttribute("center", "orderd");
 			m.addAttribute("cartlist", cartlist);
 			m.addAttribute("custvo", custvo);
+		} catch (NotLoggedInException l) {
+			return "redirect:/login";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,6 +74,9 @@ public class OrderdController {
 	public String addorder(Model m, String addr, String receivename, String transaction, HttpSession session) {
 		try {
 			CustVO custvo = (CustVO) session.getAttribute("logincust");
+			if (custvo == null) {
+				throw new NotLoggedInException();
+			}
 			String uid = custvo.getUid();
 			custvo = cubiz.get(uid);
 
@@ -107,6 +115,8 @@ public class OrderdController {
 			orbiz.modify(priceupdater);
 			m.addAttribute("center", "orderok");
 			session.setAttribute("orderokorid", orid);
+		} catch (NotLoggedInException l) {
+			return "redirect:/login";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -136,7 +146,7 @@ public class OrderdController {
 			orderd = orbiz.get(orid);
 			m.addAttribute("center", "orderok");
 			m.addAttribute("orderd", orderd);
-			session.removeAttribute("orderokid");
+			session.removeAttribute("orderokorid");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
