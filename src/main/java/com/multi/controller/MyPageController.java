@@ -1,6 +1,6 @@
 package com.multi.controller;
 
-import java.util.List; 
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -30,21 +30,25 @@ public class MyPageController {
 
 	@Autowired
 	OrderdBiz obiz;
-	
+
 	@Autowired
 	BoardBiz bobiz;
-
 
 	@RequestMapping("/mypage")
 	public String mypage(Model m, HttpSession session) {
 		m.addAttribute("center", "mypage/mypage");
-		CustVO vo = (CustVO) session.getAttribute("logincust");
-		String uid = vo.getUid();
 		try {
+			CustVO vo = (CustVO) session.getAttribute("logincust");
+			if (vo == null) {
+				throw new NotLoggedInException();
+			}
+			String uid = vo.getUid();
 			vo = biz.get(uid);
 			List<AddrlistVO> aidsoncust = abiz.getpercust(uid);
 			m.addAttribute("vo", vo);
 			m.addAttribute("aidsoncust", aidsoncust);
+		} catch (NotLoggedInException l) {
+			return "redirect:/login";
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,7 +78,7 @@ public class MyPageController {
 		}
 		return new RedirectView("/address");
 	}
-	
+
 	@RequestMapping("/add_addr")
 	public RedirectView add_addr(Model m, AddrlistVO vo) {
 		try {
@@ -88,16 +92,21 @@ public class MyPageController {
 
 	@RequestMapping("/address")
 	public String address(Model m, HttpSession session) {
-		CustVO vo = (CustVO) session.getAttribute("logincust");
-		String uid = vo.getUid();
 		List<AddrlistVO> addrlist = null;
 		try {
+			CustVO vo = (CustVO) session.getAttribute("logincust");
+			if (vo == null) {
+				throw new NotLoggedInException();
+			}
+			String uid = vo.getUid();
 			vo = biz.get(uid);
 			addrlist = abiz.getpercust(uid);
 			m.addAttribute("vo", vo);
 			m.addAttribute("center", "mypage/mypage");
 			m.addAttribute("center2", "mypage/address");
 			m.addAttribute("addrlist", addrlist);
+		} catch (NotLoggedInException l) {
+			return "redirect:/login";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
