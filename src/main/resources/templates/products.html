@@ -370,8 +370,7 @@
 												<div class="modal-footer">
 													<th:block th:if="${session.logincust} != null">
 														<a
-															th:href="@{addtobag(uid=${session.logincust.uid},
-																			pid=${p.pid})}"
+															th:href="@{orderd(ipid=${p.pid},icnt=2)}"
 															type="button" id="addbtn" class="btn btn-light">Buy</a>
 
 														<a
