@@ -61,5 +61,6 @@
 		) WHERE orid =
 		#{orid}
 	</update>
+	
 
 </mapper>

@@ -21,13 +21,18 @@ public class CartController {
 
 	@RequestMapping("/cart")
 	public String cart(Model m, HttpSession session) {
-		CustVO vo = (CustVO) session.getAttribute("logincust");
 		List<CartVO> cartlist = null;
-		String uid = vo.getUid();
 		try {
+			CustVO vo = (CustVO) session.getAttribute("logincust");
+			if (vo == null) {
+				throw new NotLoggedInException();
+			}
+			String uid = vo.getUid();
 			cartlist = cbiz.selectp(uid);
 			m.addAttribute("center", "cart");
 			m.addAttribute("cartlist", cartlist);
+		} catch (NotLoggedInException l) {
+			return "redirect:/login";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -17,7 +17,7 @@ class OrderdSelectTest {
 	void contextLoads() {
 		OrderdVO obj = null;
 		try {
-			obj = biz.get(3);
+			obj = biz.get(10);
 			System.out.println("Select OK");
 			System.out.println(obj);
 		} catch (Exception e) {
