@@ -127,14 +127,21 @@ public class OrderdController {
 	}
 
 	@RequestMapping("/orderok")
-	public String orderok(Model m) {
-		List<OrderdVO> orderd = null;
-
+	public String orderok(Model m, String id) {
+		
+		List<CartVO> cartlist = null;  	
+		CustVO custlist = null;
+//		OrderdVO orderdlist = null;
+		
 		try {
-			orderd = orbiz.get();
+			cartlist = cbiz.selectp(id);
+			custlist = cubiz.get(id);
+//			orderdlist = orbiz.get(orid);
 
 			m.addAttribute("center", "orderok");
-			m.addAttribute("orderd", orderd);
+			m.addAttribute("cartlist", cartlist);   
+			m.addAttribute("custlist", custlist);
+//			m.addAttribute("orderdlist",orderdlist);
 
 		} catch (Exception e) {
 			e.printStackTrace();
