@@ -9,7 +9,7 @@
 - **수행방향**: 각자 맡은 부분 개발 후 서버 <-> 웹 연동 구축할때 회의
 
 ### 협업 tool
-- Notion 
+- Notion(https://billy-k.notion.site/billy-k/Semi-Project-3c4e43bad251447a9f42d26305c455f7)
 - [GitHub - kimyunzae/SemiProject](https://github.com/kimyunzae/SemiProject.git)
 - [7조 세미프로젝트 기획안 220616.pdf](/src/main/resources/static/assets/7%EC%A1%B0%20%EC%84%B8%EB%AF%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%20%EA%B8%B0%ED%9A%8D%EC%95%88%20220616.pdf)
 
